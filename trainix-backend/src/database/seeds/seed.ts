@@ -81,7 +81,7 @@ async function run() {
 
   const planRepo = ds.getRepository(Plan);
   const plans = await planRepo.save(planRepo.create([
-    { gymId: gym.id, name: 'Mensual', duration: PlanDuration.MONTHLY, durationDays: 30, price: 90000, color: '#1976D2', maxFreezes: 1 },
+    { gymId: gym.id, name: 'Mensual', duration: PlanDuration.MONTHLY, durationDays: 30, price: 90000, color: '#3D5AFE', maxFreezes: 1 },
     { gymId: gym.id, name: 'Trimestral', duration: PlanDuration.QUARTERLY, durationDays: 90, price: 240000, color: '#7B1FA2', maxFreezes: 2 },
     { gymId: gym.id, name: 'Anual', duration: PlanDuration.ANNUAL, durationDays: 365, price: 850000, color: '#2E7D32', maxFreezes: 4, allowsGuest: true },
     { gymId: gym.id, name: 'Día', duration: PlanDuration.DAILY, durationDays: 1, price: 15000, color: '#F57C00', includesClasses: false },

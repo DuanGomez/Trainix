@@ -63,7 +63,7 @@ import { NotificationService } from '../../../core/services/notification.service
 
           <mat-form-field appearance="outline">
             <mat-label>Color (hex)</mat-label>
-            <input matInput formControlName="color" placeholder="#1976d2" />
+            <input matInput formControlName="color" placeholder="#3D5AFE" />
           </mat-form-field>
 
           <div class="checks span-full">
@@ -109,7 +109,7 @@ export class PlanFormComponent implements OnInit {
     maxFreezes:     [0],
     allowsGuest:    [false],
     includesClasses:[false],
-    color:          ['#1976d2'],
+    color:          ['#3D5AFE'],
   });
 
   ngOnInit(): void {

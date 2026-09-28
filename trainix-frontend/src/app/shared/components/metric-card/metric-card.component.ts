@@ -26,18 +26,19 @@ import { MatIconModule } from '@angular/material/icon';
   `,
   styles: [`
     .metric-card { cursor: default; transition: box-shadow .2s; }
-    .metric-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+    .metric-card { transition: transform .4s var(--dc-ease), box-shadow .4s ease; }
+    .metric-card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px -24px rgba(15,23,42,0.28); }
     .card-row { display: flex; justify-content: space-between; align-items: center; }
     .info { flex: 1; }
-    .label { margin: 0; font-size: 0.85rem; color: #666; font-weight: 500; text-transform: uppercase; letter-spacing: .5px; }
-    .value { margin: 4px 0; font-size: 2rem; font-weight: 700; color: #212121; }
+    .label { margin: 0; font-size: 0.78rem; color: #6e6e73; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+    .value { margin: 6px 0 2px; font-size: 2.1rem; font-weight: 800; letter-spacing: -0.04em; color: #1d1d1f; }
     .subtitle { margin: 0; font-size: 0.8rem; color: #999; }
     .icon-wrapper {
-      width: 56px; height: 56px; border-radius: 50%;
+      width: 52px; height: 52px; border-radius: 16px;
       display: flex; align-items: center; justify-content: center;
-      background: rgba(25,118,210,0.1);
+      background: color-mix(in srgb, var(--brand) 10%, white);
     }
-    .icon-wrapper mat-icon { font-size: 28px; width: 28px; height: 28px; color: #1976d2; }
+    .icon-wrapper mat-icon { font-size: 28px; width: 28px; height: 28px; color: var(--brand); }
     .accent-green .icon-wrapper { background: rgba(46,125,50,0.1); }
     .accent-green .icon-wrapper mat-icon { color: #2e7d32; }
     .accent-orange .icon-wrapper { background: rgba(230,81,0,0.1); }

@@ -52,7 +52,13 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     }
   `,
   styles: [`
-    .topbar { background: white; box-shadow: 0 1px 4px rgba(0,0,0,0.1); z-index: 10; }
+    .topbar {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px) saturate(170%);
+      -webkit-backdrop-filter: blur(14px) saturate(170%);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+      z-index: 10;
+    }
     .spacer { flex: 1; }
     .user-btn { display: flex; align-items: center; gap: 4px; }
     .user-name { font-weight: 500; }

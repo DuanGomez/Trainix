@@ -85,7 +85,7 @@ import { DEMO_CREDENTIALS } from '../../../core/demo/demo-data';
   `,
   styles: [`
     .login-form { display: flex; flex-direction: column; gap: 16px; }
-    .form-title { text-align: center; color: #1a237e; font-size: 1.4rem; font-weight: 600; margin: 0 0 8px; }
+    .form-title { text-align: center; color: #1d1d1f; font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 4px; }
     .full-width { width: 100%; }
     .submit-btn { height: 48px; font-size: 1rem; font-weight: 600; }
     .error-banner {
@@ -93,12 +93,13 @@ import { DEMO_CREDENTIALS } from '../../../core/demo/demo-data';
       padding: 12px; border-radius: 8px;
       text-align: center; font-size: 0.9rem;
     }
-    .forgot-link { text-align: center; color: #1976d2; font-size: 0.875rem; text-decoration: none; }
+    .forgot-link { text-align: center; color: var(--brand); font-size: 0.875rem; text-decoration: none; }
     .forgot-link:hover { text-decoration: underline; }
     mat-spinner { margin: 0 auto; }
     .demo-banner {
       display: flex; gap: 10px; align-items: flex-start;
-      background: #e8eaf6; color: #1a237e; padding: 12px; border-radius: 8px; font-size: 0.85rem;
+      background: color-mix(in srgb, var(--brand) 8%, white); color: #1d1d1f; padding: 12px 14px;
+      border: 1px solid color-mix(in srgb, var(--brand) 22%, transparent); border-radius: 14px; font-size: 0.85rem;
     }
     .demo-users { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
   `],

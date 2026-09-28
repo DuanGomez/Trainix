@@ -89,7 +89,7 @@ import { compact } from '../../../shared/labels';
   styles: [`
     .form { display: flex; flex-direction: column; gap: 4px; }
     .total-row { display: flex; justify-content: space-between; padding: 12px 0; font-size: 1.1rem; }
-    .total-value { color: #1a237e; font-weight: 700; font-size: 1.3rem; }
+    .total-value { color: var(--brand); font-weight: 700; font-size: 1.3rem; }
     .actions { display: flex; justify-content: flex-end; gap: 12px; }
   `],
 })

@@ -44,7 +44,7 @@ interface Plan {
 
     <div class="plans-grid">
       @for (plan of plans(); track plan.id) {
-        <mat-card class="plan-card" [style.borderTop]="'4px solid ' + (plan.color || '#1976d2')">
+        <mat-card class="plan-card" [style.borderTop]="'4px solid ' + (plan.color || '#3D5AFE')">
           <mat-card-header>
             <mat-card-title>{{ plan.name }}</mat-card-title>
             <mat-card-subtitle>{{ durationLabel(plan.duration) }}</mat-card-subtitle>
@@ -79,7 +79,7 @@ interface Plan {
   styles: [`
     .plans-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
     .plan-card { cursor: default; }
-    .price { font-size: 1.8rem; font-weight: 700; color: #1a237e; margin: 8px 0; }
+    .price { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.03em; color: #1d1d1f; margin: 8px 0; }
     .desc { color: #666; font-size: 0.9rem; }
     .features { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
   `],

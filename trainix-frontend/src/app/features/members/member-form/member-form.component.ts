@@ -138,7 +138,7 @@ import { compact, toDateOnly } from '../../../shared/labels';
   `,
   styles: [`
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
-    .section-title { grid-column: 1/-1; margin: 8px 0 4px; color: #1a237e; font-size: 1rem; }
+    .section-title { grid-column: 1/-1; margin: 8px 0 4px; color: var(--brand); font-size: 1rem; }
     .span-full { grid-column: 1/-1; }
     .form-actions { display: flex; justify-content: flex-end; gap: 12px; padding-top: 8px; }
     @media (max-width: 600px) { .form-grid { grid-template-columns: 1fr; } }

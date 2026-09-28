@@ -122,7 +122,7 @@ interface CheckinResult {
     .recorded-at { color: #2e7d32; font-weight: 600; margin: 0; }
     .checkin-right { display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 16px; }
     .time-display { text-align: center; }
-    .current-time { font-size: 3rem; font-weight: 700; color: #1a237e; margin: 0; }
+    .current-time { font-size: 3.4rem; font-weight: 800; letter-spacing: -0.04em; color: #1d1d1f; margin: 0; }
     .current-date { color: #666; margin: 4px 0 0; }
     @media (max-width: 700px) { .checkin-page { grid-template-columns: 1fr; } }
   `],

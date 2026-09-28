@@ -46,7 +46,7 @@ export class Plan {
   @Column({ default: true, name: 'includes_classes' })
   includesClasses: boolean;
 
-  @Column({ length: 7, default: '#1976D2' })
+  @Column({ length: 7, default: '#3D5AFE' })
   color: string;
 
   @Column({ default: true, name: 'is_active' })

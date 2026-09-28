@@ -26,11 +26,11 @@ import { MatIconModule } from '@angular/material/icon';
   styles: [`
     .page-header {
       display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 24px; gap: 16px;
+      margin-bottom: 24px; gap: 16px; flex-wrap: wrap;
     }
     .header-text { flex: 1; }
-    .page-title { margin: 0; font-size: 1.6rem; font-weight: 700; color: #212121; }
-    .page-subtitle { margin: 4px 0 0; color: #666; font-size: 0.9rem; }
+    .page-title { margin: 0; font-size: 1.9rem; font-weight: 800; letter-spacing: -0.04em; color: #1d1d1f; }
+    .page-subtitle { margin: 4px 0 0; color: #6e6e73; font-size: 0.95rem; }
   `],
 })
 export class PageHeaderComponent {

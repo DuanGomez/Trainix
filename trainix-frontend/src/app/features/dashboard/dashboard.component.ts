@@ -124,8 +124,8 @@ import { MatButtonModule } from '@angular/material/button';
     .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 160px; padding: 16px 0 0; }
     .bar-col { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; flex: 1; height: 100%; min-width: 0; }
     .bar-track { flex: 1; width: 100%; display: flex; align-items: flex-end; }
-    .bar { width: 100%; min-height: 4px; background: #1976d2; border-radius: 4px 4px 0 0; transition: height .3s; }
-    .attend-bar { background: #2e7d32; }
+    .bar { width: 100%; min-height: 4px; background: linear-gradient(180deg, var(--brand-2), var(--brand)); border-radius: 10px 10px 4px 4px; transition: height .3s; }
+    .attend-bar { background: linear-gradient(180deg, #6ee7b7, #10b981); }
     .bar-label { font-size: 0.7rem; color: #666; margin-top: 4px; white-space: nowrap; }
     .quick-actions h3 { margin: 0 0 12px; }
     .actions-row { display: flex; gap: 12px; flex-wrap: wrap; }

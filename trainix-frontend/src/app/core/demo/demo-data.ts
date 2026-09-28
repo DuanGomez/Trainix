@@ -28,7 +28,7 @@ export interface DemoDb {
   routines: Row[];
 }
 
-export const DEMO_DB_VERSION = 1;
+export const DEMO_DB_VERSION = 2;
 
 export function uuid(): string {
   return crypto.randomUUID();
@@ -111,7 +111,7 @@ export function createDemoDb(): DemoDb {
 
   const planDefs: [string, string, string, number, number, string, number, boolean, boolean][] = [
     ['Día', 'Acceso por un día a toda la sede.', 'daily', 1, 15000, '#F57C00', 0, false, false],
-    ['Mensual', 'Acceso ilimitado durante 30 días.', 'monthly', 30, 95000, '#1976D2', 1, false, true],
+    ['Mensual', 'Acceso ilimitado durante 30 días.', 'monthly', 30, 95000, '#3D5AFE', 1, false, true],
     ['Trimestral', 'Tres meses con valoración física incluida.', 'quarterly', 90, 255000, '#7B1FA2', 2, false, true],
     ['Anual', 'El mejor precio: 12 meses + acompañante los fines de semana.', 'annual', 365, 890000, '#2E7D32', 4, true, true],
   ];

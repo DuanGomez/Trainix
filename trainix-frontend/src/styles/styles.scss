@@ -6,7 +6,73 @@
 html, body {
   height: 100%;
   margin: 0;
-  font-family: 'Inter', Roboto, 'Helvetica Neue', sans-serif;
+  font-family: var(--dc-font);
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+}
+
+// ADN Dcodea aplicado a Angular Material: marca Trainix, formas píldora y tarjetas redondeadas.
+:root {
+  --brand: #3d5afe;
+  --brand-2: #00e5ff;
+
+  --mat-button-filled-container-shape: 980px;
+  --mat-button-outlined-container-shape: 980px;
+  --mat-button-text-container-shape: 980px;
+  --mat-button-protected-container-shape: 980px;
+  --mdc-filled-button-container-shape: 980px;
+  --mdc-outlined-button-container-shape: 980px;
+  --mdc-text-button-container-shape: 980px;
+  --mdc-protected-button-container-shape: 980px;
+
+  --mat-card-elevated-container-shape: 18px;
+  --mat-card-outlined-container-shape: 18px;
+  --mdc-elevated-card-container-shape: 18px;
+  --mdc-outlined-card-container-shape: 18px;
+  --mat-card-elevated-container-elevation: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
+  --mdc-elevated-card-container-elevation: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
+
+  --mat-form-field-outlined-container-shape: 12px;
+  --mdc-outlined-text-field-container-shape: 12px;
+  --mat-dialog-container-shape: 28px;
+  --mdc-dialog-container-shape: 28px;
+  --mat-menu-container-shape: 14px;
+  --mat-select-container-elevation-shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.3);
+  --mat-chip-container-shape-radius: 980px;
+  --mat-button-filled-label-text-tracking: -0.01em;
+  --mdc-filled-button-label-text-tracking: -0.01em;
+  --mat-button-outlined-label-text-tracking: -0.01em;
+  --mdc-outlined-button-label-text-tracking: -0.01em;
+  --mat-button-text-label-text-tracking: -0.01em;
+  --mdc-text-button-label-text-tracking: -0.01em;
+  --mat-button-protected-label-text-tracking: -0.01em;
+  --mdc-protected-button-label-text-tracking: -0.01em;
+  --mat-form-field-container-text-tracking: -0.01em;
+  --mat-form-field-outlined-label-text-tracking: -0.01em;
+  --mdc-outlined-text-field-label-text-tracking: -0.01em;
+  --mat-card-title-text-tracking: -0.02em;
+  --mat-list-list-item-label-text-tracking: -0.01em;
+  --mdc-chip-container-shape-radius: 980px;
+}
+
+// Botón principal con el destello diagonal de Dcodea.
+.mat-mdc-unelevated-button.mat-primary:not(:disabled),
+.mat-mdc-unelevated-button.mat-warn:not(:disabled) {
+  background-image: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.38) 50%, transparent 70%);
+  background-size: 260% 100%;
+  background-position: 160% 0;
+  background-repeat: no-repeat;
+  transition: background-position 0.7s var(--dc-ease), transform 0.3s var(--dc-ease), box-shadow 0.3s ease;
+
+  &:hover {
+    background-position: -60% 0;
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px -10px color-mix(in srgb, var(--brand) 70%, transparent);
+  }
+}
+
+.mat-mdc-card {
+  border: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 * {

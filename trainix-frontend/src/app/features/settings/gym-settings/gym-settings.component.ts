@@ -98,7 +98,7 @@ import { AuthStore } from '../../../core/auth/auth.store';
   `,
   styles: [`
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
-    .section { grid-column: 1/-1; color: #1a237e; margin: 12px 0 4px; font-size: 1rem; }
+    .section { grid-column: 1/-1; color: var(--brand); margin: 12px 0 4px; font-size: 1rem; }
     .span-full { grid-column: 1/-1; }
     .toggle-row { padding: 8px 0; }
     .actions { display: flex; justify-content: flex-end; padding-top: 8px; }

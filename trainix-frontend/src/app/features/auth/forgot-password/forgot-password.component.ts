@@ -46,7 +46,7 @@ import { NotificationService } from '../../../core/services/notification.service
   `,
   styles: [`
     .form { display: flex; flex-direction: column; gap: 16px; }
-    .form-title { text-align: center; color: #1a237e; font-size: 1.4rem; font-weight: 600; margin: 0; }
+    .form-title { text-align: center; color: #1d1d1f; font-size: 1.25rem; font-weight: 700; margin: 0; }
     .subtitle { text-align: center; color: #666; font-size: 0.9rem; margin: 0; }
     .full-width { width: 100%; }
     .success-state { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }

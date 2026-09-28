@@ -1,5 +1,7 @@
 # Trainix — Gestión de gimnasios
 
+Diseñado y desarrollado por **[Dcodea](https://www.instagram.com/dcod.ea/)**.
+
 Plataforma para administrar un gimnasio: clientes, planes, membresías, pagos, caja,
 control de asistencia (check-in / check-out), rutinas, reportes y usuarios por rol.
 
