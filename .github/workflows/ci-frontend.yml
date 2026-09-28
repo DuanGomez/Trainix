@@ -1,0 +1,39 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'trainix-frontend/**'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'trainix-frontend/**'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: trainix-frontend
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: trainix-frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build production (API real)
+        run: npm run build -- --configuration production
+
+      - name: Build demo (GitHub Pages)
+        run: npm run build -- --configuration demo
