@@ -1,50 +1,92 @@
 import { Component, input } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-metric-card',
   standalone: true,
-  imports: [MatCardModule, MatIconModule],
+  imports: [MatIconModule],
   template: `
-    <mat-card class="metric-card" [class]="'accent-' + color()">
-      <mat-card-content>
-        <div class="card-row">
-          <div class="info">
-            <p class="label">{{ label() }}</p>
-            <h2 class="value">{{ value() }}</h2>
-            @if (subtitle()) {
-              <p class="subtitle">{{ subtitle() }}</p>
-            }
-          </div>
-          <div class="icon-wrapper">
-            <mat-icon>{{ icon() }}</mat-icon>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
+    <article class="metric" [class]="'metric metric--' + color()">
+      <div class="metric__top">
+        <p class="metric__label">{{ label() }}</p>
+        <span class="metric__icon"><mat-icon>{{ icon() }}</mat-icon></span>
+      </div>
+      <p class="metric__value">{{ value() }}</p>
+      @if (subtitle()) {
+        <p class="metric__sub">{{ subtitle() }}</p>
+      }
+    </article>
   `,
   styles: [`
-    .metric-card { cursor: default; transition: box-shadow .2s; }
-    .metric-card { transition: transform .4s var(--dc-ease), box-shadow .4s ease; }
-    .metric-card:hover { transform: translateY(-3px); box-shadow: 0 24px 48px -24px rgba(15,23,42,0.28); }
-    .card-row { display: flex; justify-content: space-between; align-items: center; }
-    .info { flex: 1; }
-    .label { margin: 0; font-size: 0.78rem; color: #6e6e73; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
-    .value { margin: 6px 0 2px; font-size: 2.1rem; font-weight: 800; letter-spacing: -0.04em; color: #1d1d1f; }
-    .subtitle { margin: 0; font-size: 0.8rem; color: #999; }
-    .icon-wrapper {
-      width: 52px; height: 52px; border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-      background: color-mix(in srgb, var(--brand) 10%, white);
+    :host { display: block; height: 100%; }
+    .metric {
+      --c: var(--tx-yellow);
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      padding: 20px 22px;
+      border-radius: 20px;
+      background: var(--tx-surface);
+      border: 1px solid var(--tx-line);
+      transition: transform .4s var(--dc-ease), border-color .3s ease;
     }
-    .icon-wrapper mat-icon { font-size: 28px; width: 28px; height: 28px; color: var(--brand); }
-    .accent-green .icon-wrapper { background: rgba(46,125,50,0.1); }
-    .accent-green .icon-wrapper mat-icon { color: #2e7d32; }
-    .accent-orange .icon-wrapper { background: rgba(230,81,0,0.1); }
-    .accent-orange .icon-wrapper mat-icon { color: #e65100; }
-    .accent-red .icon-wrapper { background: rgba(198,40,40,0.1); }
-    .accent-red .icon-wrapper mat-icon { color: #c62828; }
+    .metric::after {
+      content: '';
+      position: absolute;
+      right: -30px;
+      bottom: -30px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(closest-side, color-mix(in srgb, var(--c) 22%, transparent), transparent);
+      pointer-events: none;
+    }
+    .metric:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--c) 45%, transparent); }
+    .metric--green { --c: var(--tx-green); }
+    .metric--orange { --c: #ff9f1a; }
+    .metric--red { --c: var(--tx-red); }
+    .metric--blue { --c: var(--tx-blue); }
+    .metric--yellow {
+      background: var(--tx-yellow);
+      border-color: var(--tx-yellow);
+      color: #0a0a0a;
+    }
+    .metric--yellow .metric__label, .metric--yellow .metric__sub { color: rgba(10, 10, 10, 0.65); }
+    .metric--yellow .metric__value { color: #0a0a0a; }
+    .metric--yellow .metric__icon { background: #0a0a0a; color: var(--tx-yellow); }
+    .metric--yellow::after { display: none; }
+
+    .metric__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .metric__label {
+      margin: 4px 0 0;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--tx-text-2);
+    }
+    .metric__icon {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      color: var(--c);
+      background: color-mix(in srgb, var(--c) 14%, transparent);
+    }
+    .metric__icon mat-icon { font-size: 22px; width: 22px; height: 22px; }
+    .metric__value {
+      position: relative;
+      margin: 14px 0 0;
+      font-family: var(--tx-display);
+      font-size: 2.9rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--tx-text);
+      white-space: nowrap;
+    }
+    .metric__sub { position: relative; margin: 6px 0 0; font-size: 0.8rem; color: var(--tx-text-3); }
   `],
 })
 export class MetricCardComponent {
@@ -52,5 +94,5 @@ export class MetricCardComponent {
   value    = input.required<string | number>();
   icon     = input.required<string>();
   subtitle = input<string>('');
-  color    = input<'blue' | 'green' | 'orange' | 'red'>('blue');
+  color    = input<'yellow' | 'blue' | 'green' | 'orange' | 'red'>('yellow');
 }

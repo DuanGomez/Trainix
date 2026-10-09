@@ -47,7 +47,7 @@ interface Role { id: string; name: string; description: string; isSystem: boolea
     .roles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
     .role-card mat-card-title { display: flex; align-items: center; gap: 8px; font-size: 1rem; }
     .permissions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-    .no-perms { color: #999; font-size: 0.85rem; }
+    .no-perms { color: var(--tx-text-3); font-size: 0.85rem; }
   `],
 })
 export class RolesListComponent implements OnInit {

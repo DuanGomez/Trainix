@@ -21,10 +21,10 @@ import { MatButtonModule } from '@angular/material/button';
   styles: [`
     .empty-state {
       display: flex; flex-direction: column; align-items: center;
-      justify-content: center; padding: 48px 24px; text-align: center; color: #9e9e9e;
+      justify-content: center; padding: 48px 24px; text-align: center; color: var(--tx-text-3);
     }
-    .empty-icon { font-size: 64px; width: 64px; height: 64px; margin-bottom: 16px; opacity: .4; }
-    h3 { margin: 0 0 8px; font-size: 1.2rem; color: #616161; }
+    .empty-icon { font-size: 64px; width: 64px; height: 64px; margin-bottom: 16px; color: var(--tx-yellow); opacity: .5; }
+    h3 { margin: 0 0 8px; font-family: var(--tx-display); font-size: 1.6rem; font-weight: 800; text-transform: uppercase; color: var(--tx-text-2); }
     p { margin: 0 0 24px; font-size: 0.9rem; }
   `],
 })

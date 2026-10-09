@@ -6,15 +6,18 @@ import { Component, input } from '@angular/core';
   template: `<span class="badge" [class]="'badge-' + status()">{{ label() }}</span>`,
   styles: [`
     .badge {
-      display: inline-block; padding: 2px 10px;
-      border-radius: 12px; font-size: 0.75rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px; border-radius: 980px;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--tx-text-2); background: rgba(255, 255, 255, 0.06);
     }
-    .badge-active, .badge-completed   { background: #e8f5e9; color: #2e7d32; }
-    .badge-expired, .badge-failed     { background: #ffebee; color: #c62828; }
-    .badge-frozen                     { background: #e3f2fd; color: #1565c0; }
-    .badge-cancelled                  { background: #fafafa; color: #616161; border: 1px solid #e0e0e0; }
-    .badge-pending, .badge-pending_payment { background: #fff8e1; color: #e65100; }
-    .badge-refunded                   { background: #f3e5f5; color: #6a1b9a; }
+    .badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+    .badge-active, .badge-completed   { color: var(--tx-green); background: rgba(46, 229, 157, 0.12); }
+    .badge-expired, .badge-failed     { color: var(--tx-red); background: rgba(255, 82, 82, 0.12); }
+    .badge-frozen                     { color: var(--tx-blue); background: rgba(77, 163, 255, 0.12); }
+    .badge-cancelled                  { color: var(--tx-text-3); background: rgba(255, 255, 255, 0.05); }
+    .badge-pending, .badge-pending_payment { color: var(--tx-yellow); background: var(--tx-yellow-soft); }
+    .badge-refunded                   { color: #c58cff; background: rgba(197, 140, 255, 0.12); }
   `],
 })
 export class StatusBadgeComponent {

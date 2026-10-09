@@ -1,11 +1,22 @@
 @use '@angular/material' as mat;
 
-// Marca Trainix: índigo eléctrico + cian, sobre el ADN visual de Dcodea.
-$trainix-primary: mat.m2-define-palette(mat.$m2-indigo-palette, A400, A100, A700);
-$trainix-accent:  mat.m2-define-palette(mat.$m2-cyan-palette, A400);
-$trainix-warn:    mat.m2-define-palette(mat.$m2-red-palette, 600);
+// Marca Trainix: amarillo eléctrico sobre negro (tema oscuro).
+$trainix-yellow: (
+  50: #fff9e0, 100: #fff0b3, 200: #ffe680, 300: #ffdb4d, 400: #ffd326,
+  500: #ffc800, 600: #f5b800, 700: #e6a400, 800: #d69200, 900: #b87100,
+  A100: #fff4c4, A200: #ffe45c, A400: #ffd400, A700: #ffc400,
+  contrast: (
+    50: #0a0a0a, 100: #0a0a0a, 200: #0a0a0a, 300: #0a0a0a, 400: #0a0a0a,
+    500: #0a0a0a, 600: #0a0a0a, 700: #0a0a0a, 800: #0a0a0a, 900: #0a0a0a,
+    A100: #0a0a0a, A200: #0a0a0a, A400: #0a0a0a, A700: #0a0a0a,
+  ),
+);
 
-$trainix-theme: mat.m2-define-light-theme((
+$trainix-primary: mat.m2-define-palette($trainix-yellow, 500, 300, 700);
+$trainix-accent:  mat.m2-define-palette($trainix-yellow, A400);
+$trainix-warn:    mat.m2-define-palette(mat.$m2-red-palette, 400);
+
+$trainix-theme: mat.m2-define-dark-theme((
   color: (
     primary: $trainix-primary,
     accent:  $trainix-accent,

@@ -1,5 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, signal, viewChild } from '@angular/core';
+import { FormBuilder, FormGroupDirective, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -100,31 +100,54 @@ interface CheckinResult {
     </div>
   `,
   styles: [`
-    .checkin-page { display: grid; grid-template-columns: 1fr 280px; gap: 24px; max-width: 900px; }
-    .checkin-card mat-card-title { display: flex; align-items: center; gap: 8px; }
-    .hint { color: #666; font-size: 0.9rem; margin-bottom: 16px; }
+    .checkin-page { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1100px; }
+    .checkin-card { padding: 8px; border-radius: 24px; }
+    .checkin-card mat-card-title {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--tx-display); font-size: 1.8rem; font-weight: 800; text-transform: uppercase;
+    }
+    .checkin-card mat-card-title mat-icon { color: var(--tx-yellow); }
+    .hint { color: var(--tx-text-2); font-size: 0.9rem; margin: 8px 0 18px; }
     .full-width { width: 100%; }
-    .btn-row { display: flex; gap: 12px; }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-row button { height: 48px; padding: 0 22px; }
     .result-error {
-      display: flex; align-items: center; gap: 8px;
-      margin-top: 16px; padding: 12px; border-radius: 8px;
-      background: #ffebee; color: #c62828;
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 18px; padding: 14px 16px; border-radius: 16px;
+      background: rgba(255, 82, 82, 0.1); color: var(--tx-red);
+      border: 1px solid rgba(255, 82, 82, 0.25); font-weight: 600;
     }
     .result-success {
-      margin-top: 16px; padding: 16px; border-radius: 8px;
-      background: #e8f5e9; display: flex; flex-direction: column; gap: 8px;
+      margin-top: 18px; padding: 20px; border-radius: 20px;
+      background: linear-gradient(135deg, rgba(46, 229, 157, 0.14), rgba(46, 229, 157, 0.04));
+      border: 1px solid rgba(46, 229, 157, 0.3);
+      display: flex; flex-direction: column; gap: 10px;
+      animation: pop .5s var(--dc-ease-out) both;
     }
-    .success-icon { color: #2e7d32; font-size: 32px; width: 32px; height: 32px; }
+    .success-icon { color: var(--tx-green); font-size: 36px; width: 36px; height: 36px; }
     .member-info { display: flex; flex-direction: column; }
-    .member-info strong { font-size: 1.2rem; }
-    .code { color: #666; font-size: 0.85rem; }
-    .membership-info { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.9rem; }
-    .recorded-at { color: #2e7d32; font-weight: 600; margin: 0; }
-    .checkin-right { display: flex; flex-direction: column; align-items: center; gap: 24px; padding-top: 16px; }
+    .member-info strong {
+      font-family: var(--tx-display); font-size: 2.2rem; font-weight: 800; text-transform: uppercase; line-height: 1;
+    }
+    .code { color: var(--tx-text-2); font-size: 0.85rem; font-family: var(--dc-mono); margin-top: 4px; }
+    .membership-info { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.9rem; color: var(--tx-text-2); }
+    .recorded-at { color: var(--tx-green); font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.85rem; }
+    .checkin-right {
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+      padding: 32px 20px; border-radius: 24px;
+      background:
+        radial-gradient(80% 60% at 50% 0%, rgba(255, 200, 0, 0.18), transparent 70%),
+        var(--tx-surface);
+      border: 1px solid var(--tx-line);
+    }
     .time-display { text-align: center; }
-    .current-time { font-size: 3.4rem; font-weight: 800; letter-spacing: -0.04em; color: #1d1d1f; margin: 0; }
-    .current-date { color: #666; margin: 4px 0 0; }
-    @media (max-width: 700px) { .checkin-page { grid-template-columns: 1fr; } }
+    .current-time {
+      margin: 0; font-family: var(--tx-display); font-size: 5.4rem; font-weight: 900; font-style: italic;
+      line-height: 1; color: var(--tx-yellow);
+    }
+    .current-date { color: var(--tx-text-2); margin: 8px 0 0; text-transform: capitalize; }
+    @keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+    @media (max-width: 800px) { .checkin-page { grid-template-columns: 1fr; } }
   `],
 })
 export class CheckinPanelComponent {
@@ -138,6 +161,7 @@ export class CheckinPanelComponent {
   now     = new Date();
 
   form = this.fb.group({ identifier: ['', Validators.required] });
+  private formDir = viewChild(FormGroupDirective);
 
   checkin():  void { this.send('checkin'); }
   checkout(): void { this.send('checkout'); }
@@ -152,7 +176,8 @@ export class CheckinPanelComponent {
     this.api.post<CheckinResult>(`attendance/${type}`, { query: identifier }).subscribe({
       next: (res) => {
         this.result.set(res);
-        this.form.reset();
+        // resetForm también limpia el estado "enviado" para que el campo vacío no se vea como error.
+        this.formDir()?.resetForm();
         this.loading.set(false);
         this.now = new Date();
       },

@@ -1,60 +1,142 @@
-import { DcodeaBadgeComponent } from '../../shared/components/dcodea-badge.component';
-import { Component, inject, input, output } from '@angular/core';
+import { Component, computed, inject, output } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDividerModule } from '@angular/material/divider';
-import { NAV_ITEMS, NavItem } from './nav-items.config';
+import { NAV_ITEMS } from './nav-items.config';
 import { AuthStore } from '../../core/auth/auth.store';
+import { DcodeaBadgeComponent } from '../../shared/components/dcodea-badge.component';
+import { ROLE_LABELS, label } from '../../shared/labels';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, MatListModule, MatIconModule, MatDividerModule, DcodeaBadgeComponent],
+  imports: [RouterLink, RouterLinkActive, MatIconModule, DcodeaBadgeComponent],
   template: `
-    <div class="sidebar dc-dark">
-      <div class="sidebar-header">
-        <img src="favicon.svg" alt="Trainix" class="logo" />
-        <span class="brand">Trainix</span>
-      </div>
+    <div class="sidebar">
+      <a class="logo" routerLink="/dashboard" (click)="itemClicked.emit()">
+        <span class="logo__mark">T</span>TRAINIX
+      </a>
 
-      <mat-divider class="divider" />
+      @if (user(); as u) {
+        <div class="me">
+          <span class="me__avatar">{{ u.firstName[0] }}{{ u.lastName[0] }}</span>
+          <div class="me__info">
+            <strong>{{ u.firstName }} {{ u.lastName }}</strong>
+            <span>{{ roleLabel() }}</span>
+          </div>
+        </div>
+      }
 
-      <mat-nav-list>
+      <p class="section">Menú</p>
+      <nav class="nav">
         @for (item of visibleItems(); track item.route) {
-          <a mat-list-item
-             [routerLink]="item.route"
-             routerLinkActive="active-link"
-             (click)="itemClicked.emit()">
-            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-            <span matListItemTitle>{{ item.label }}</span>
+          <a class="nav__item" [routerLink]="item.route" routerLinkActive="is-active" (click)="itemClicked.emit()">
+            <mat-icon>{{ item.icon }}</mat-icon>
+            <span>{{ item.label }}</span>
           </a>
         }
-      </mat-nav-list>
+      </nav>
+
       <div class="signature"><app-dcodea-badge /></div>
     </div>
   `,
   styles: [`
-    .sidebar { display: flex; flex-direction: column; height: 100%; color: white; }
-    .signature { padding: 16px; }
-    .sidebar-header { display: flex; align-items: center; gap: 12px; padding: 20px 16px; }
-    .brand { font-size: 1.35rem; font-weight: 800; color: white; letter-spacing: -0.03em; }
-    .logo { border-radius: 10px; box-shadow: 0 8px 24px -6px rgba(61, 90, 254, 0.7); }
-    .logo { width: 36px; height: 36px; }
-    mat-nav-list { flex: 1; padding-top: 8px; }
-    a.active-link { background: linear-gradient(135deg, var(--brand), color-mix(in srgb, var(--brand) 55%, var(--brand-2))) !important; box-shadow: 0 10px 30px -12px var(--brand); }
-    a.mat-mdc-list-item {
-      border-radius: 12px; margin: 2px 10px;
-      --mat-list-list-item-label-text-color: rgba(255,255,255,0.85);
-      --mat-list-list-item-hover-label-text-color: #fff;
-      --mat-list-list-item-focus-label-text-color: #fff;
-      --mat-list-list-item-leading-icon-color: rgba(255,255,255,0.85);
-      --mat-list-list-item-hover-leading-icon-color: #fff;
+    :host { display: block; height: 100%; }
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      padding: 22px 14px 18px;
+      background: #000;
+      border-right: 1px solid var(--tx-line);
+      overflow-y: auto;
     }
-    a.active-link { --mat-list-list-item-label-text-color: #fff; font-weight: 600; }
-    a.mat-mdc-list-item:hover { background: rgba(255,255,255,0.1); }
-    mat-icon { color: rgba(255,255,255,0.85) !important; }
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 10px;
+      font-family: var(--tx-display);
+      font-weight: 900;
+      font-style: italic;
+      font-size: 26px;
+      letter-spacing: 0.04em;
+      color: #fff;
+      text-decoration: none;
+    }
+    .logo__mark {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--tx-yellow);
+      color: #0a0a0a;
+      font-size: 22px;
+      transform: skewX(-8deg);
+    }
+    .me {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 4px 8px;
+      padding: 12px;
+      border-radius: 16px;
+      background: var(--tx-surface);
+      border: 1px solid var(--tx-line);
+    }
+    .me__avatar {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: var(--tx-yellow);
+      color: #0a0a0a;
+      font-family: var(--tx-display);
+      font-weight: 800;
+      font-size: 18px;
+    }
+    .me__info { display: flex; flex-direction: column; min-width: 0; }
+    .me__info strong { font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .me__info span { font-size: 0.75rem; color: var(--tx-yellow); font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+    .section {
+      margin: 22px 14px 8px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--tx-text-3);
+    }
+    .nav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+    .nav__item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      color: var(--tx-text-2);
+      font-size: 0.92rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color .2s ease, background-color .2s ease;
+    }
+    .nav__item mat-icon { font-size: 21px; width: 21px; height: 21px; }
+    .nav__item:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
+    .nav__item.is-active { color: #fff; background: var(--tx-yellow-soft); font-weight: 600; }
+    .nav__item.is-active mat-icon { color: var(--tx-yellow); }
+    .nav__item.is-active::before {
+      content: '';
+      position: absolute;
+      left: -14px;
+      top: 8px;
+      bottom: 8px;
+      width: 4px;
+      border-radius: 0 4px 4px 0;
+      background: var(--tx-yellow);
+    }
+    .signature { padding: 16px 4px 0; }
   `],
 })
 export class SidebarComponent {
@@ -62,10 +144,11 @@ export class SidebarComponent {
 
   itemClicked = output<void>();
 
+  user = this.authStore.currentUser;
+  roleLabel = computed(() => label(ROLE_LABELS, this.authStore.role()));
+
   visibleItems() {
     const role = this.authStore.role();
-    return NAV_ITEMS.filter(
-      (item) => !item.roles || !role || item.roles.includes(role),
-    );
+    return NAV_ITEMS.filter((item) => !item.roles || !role || item.roles.includes(role));
   }
 }

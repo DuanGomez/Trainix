@@ -122,16 +122,16 @@ interface CashSession {
     .session-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .amounts { display: flex; gap: 24px; margin-bottom: 16px; }
     .amount-item { display: flex; flex-direction: column; }
-    .label { font-size: 0.8rem; color: #666; }
-    .value { font-size: 1.5rem; font-weight: 700; }
-    .green { color: #2e7d32; }
-    .red { color: #c62828; }
-    .muted { color: #888; }
+    .label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--tx-text-3); }
+    .value { font-family: var(--tx-display); font-size: 2.4rem; font-weight: 800; line-height: 1.1; }
+    .green { color: var(--tx-green); }
+    .red { color: var(--tx-red); }
+    .muted { color: var(--tx-text-3); }
     .close-form { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
     .closed-card { margin-bottom: 16px; }
-    .breakdown-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+    .breakdown-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--tx-line); }
     .no-session { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 32px; text-align: center; }
-    .big-icon { font-size: 64px; width: 64px; height: 64px; color: #bbb; }
+    .big-icon { font-size: 64px; width: 64px; height: 64px; color: var(--tx-yellow); }
     .open-form { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; justify-content: center; }
     @media (max-width: 700px) { .session-grid { grid-template-columns: 1fr; } }
   `],

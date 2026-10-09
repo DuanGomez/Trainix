@@ -44,7 +44,7 @@ interface Plan {
 
     <div class="plans-grid">
       @for (plan of plans(); track plan.id) {
-        <mat-card class="plan-card" [style.borderTop]="'4px solid ' + (plan.color || '#3D5AFE')">
+        <mat-card class="plan-card" [style.borderTop]="'4px solid ' + (plan.color || '#FFC800')">
           <mat-card-header>
             <mat-card-title>{{ plan.name }}</mat-card-title>
             <mat-card-subtitle>{{ durationLabel(plan.duration) }}</mat-card-subtitle>
@@ -77,10 +77,12 @@ interface Plan {
     </div>
   `,
   styles: [`
+    .plan-card mat-card-title { font-family: var(--tx-display); font-size: 1.9rem; font-weight: 800; font-style: italic; text-transform: uppercase; line-height: 1; }
+    .plan-card mat-card-subtitle { margin-top: 6px; text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; font-weight: 700; }
     .plans-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
     .plan-card { cursor: default; }
-    .price { font-size: 1.9rem; font-weight: 800; letter-spacing: -0.03em; color: #1d1d1f; margin: 8px 0; }
-    .desc { color: #666; font-size: 0.9rem; }
+    .price { font-family: var(--tx-display); font-size: 2.6rem; font-weight: 800; line-height: 1; color: var(--tx-text); margin: 10px 0; }
+    .desc { color: var(--tx-text-2); font-size: 0.9rem; }
     .features { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
   `],
 })

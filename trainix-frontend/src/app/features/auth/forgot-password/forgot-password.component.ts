@@ -46,11 +46,13 @@ import { NotificationService } from '../../../core/services/notification.service
   `,
   styles: [`
     .form { display: flex; flex-direction: column; gap: 16px; }
-    .form-title { text-align: center; color: #1d1d1f; font-size: 1.25rem; font-weight: 700; margin: 0; }
-    .subtitle { text-align: center; color: #666; font-size: 0.9rem; margin: 0; }
+    .form-title { margin: 0; font-family: var(--tx-display); font-weight: 900; font-style: italic; text-transform: uppercase; font-size: 2.6rem; line-height: .95; color: var(--tx-text); }
+    .subtitle { color: var(--tx-text-2); font-size: 0.95rem; margin: 0 0 8px; }
     .full-width { width: 100%; }
     .success-state { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .success-icon { font-size: 64px; width: 64px; height: 64px; color: #2e7d32; }
+    .success-icon { font-size: 64px; width: 64px; height: 64px; color: var(--tx-yellow); }
+    .success-state h2 { font-family: var(--tx-display); font-weight: 900; font-style: italic; text-transform: uppercase; font-size: 2.2rem; margin: 0; }
+    .success-state p { color: var(--tx-text-2); margin: 0 0 8px; }
   `],
 })
 export class ForgotPasswordComponent {

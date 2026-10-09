@@ -85,7 +85,7 @@ interface Payment {
       <mat-paginator [length]="total()" [pageSize]="25" (page)="onPage($event)" showFirstLastButtons />
     </mat-card>
   `,
-  styles: [`.toolbar { margin-bottom: 16px; } .full-width { width: 100%; } .code { color: #999; }`],
+  styles: [`.toolbar { margin-bottom: 16px; } .full-width { width: 100%; } .code { color: var(--tx-text-3); }`],
 })
 export class PaymentsListComponent implements OnInit {
   private api = inject(ApiService);

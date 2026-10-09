@@ -42,7 +42,7 @@ interface AttendanceRecord {
         <ng-container matColumnDef="type">
           <th mat-header-cell *matHeaderCellDef>Tipo</th>
           <td mat-cell *matCellDef="let r">
-            <mat-icon [style.color]="r.type === 'checkin' ? '#2e7d32' : '#1565c0'">
+            <mat-icon [style.color]="r.type === 'checkin' ? 'var(--tx-green)' : 'var(--tx-blue)'">
               {{ r.type === 'checkin' ? 'login' : 'logout' }}
             </mat-icon>
             {{ r.type === 'checkin' ? 'Entrada' : 'Salida' }}

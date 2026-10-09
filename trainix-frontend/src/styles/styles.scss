@@ -3,19 +3,34 @@
 @use './theme';
 @use './typography';
 
-html, body {
-  height: 100%;
-  margin: 0;
-  font-family: var(--dc-font);
-  letter-spacing: -0.011em;
-  -webkit-font-smoothing: antialiased;
-}
+// ============================================================
+// Trainix — identidad deportiva: negro grafito + amarillo eléctrico,
+// títulos condensados en mayúsculas. Base del ADN Dcodea (dcodea-dna.css).
+// ============================================================
 
-// ADN Dcodea aplicado a Angular Material: marca Trainix, formas píldora y tarjetas redondeadas.
 :root {
-  --brand: #3d5afe;
-  --brand-2: #00e5ff;
+  --tx-bg: #0a0a0a;
+  --tx-surface: #141414;
+  --tx-surface-2: #1c1c1c;
+  --tx-surface-3: #242424;
+  --tx-line: rgba(255, 255, 255, 0.08);
+  --tx-line-strong: rgba(255, 255, 255, 0.14);
+  --tx-text: #f5f5f5;
+  --tx-text-2: #a3a3a3;
+  --tx-text-3: #6b6b6b;
+  --tx-yellow: #ffc800;
+  --tx-yellow-2: #ffe14d;
+  --tx-yellow-soft: rgba(255, 200, 0, 0.12);
+  --tx-green: #2ee59d;
+  --tx-red: #ff5252;
+  --tx-blue: #4da3ff;
+  --tx-display: 'Barlow Condensed', 'Inter', sans-serif;
 
+  // ADN Dcodea con la marca de Trainix
+  --brand: #ffc800;
+  --brand-2: #ffe14d;
+
+  // Formas
   --mat-button-filled-container-shape: 980px;
   --mat-button-outlined-container-shape: 980px;
   --mat-button-text-container-shape: 980px;
@@ -24,60 +39,67 @@ html, body {
   --mdc-outlined-button-container-shape: 980px;
   --mdc-text-button-container-shape: 980px;
   --mdc-protected-button-container-shape: 980px;
+  --mat-button-filled-label-text-weight: 700;
+  --mdc-filled-button-label-text-weight: 700;
 
-  --mat-card-elevated-container-shape: 18px;
-  --mat-card-outlined-container-shape: 18px;
-  --mdc-elevated-card-container-shape: 18px;
-  --mdc-outlined-card-container-shape: 18px;
-  --mat-card-elevated-container-elevation: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
-  --mdc-elevated-card-container-elevation: 0 1px 2px rgba(15, 23, 42, 0.06), 0 8px 24px -12px rgba(15, 23, 42, 0.12);
+  --mat-card-elevated-container-shape: 20px;
+  --mat-card-outlined-container-shape: 20px;
+  --mdc-elevated-card-container-shape: 20px;
+  --mdc-outlined-card-container-shape: 20px;
+  --mat-card-elevated-container-color: var(--tx-surface);
+  --mdc-elevated-card-container-color: var(--tx-surface);
+  --mat-card-elevated-container-elevation: none;
+  --mdc-elevated-card-container-elevation: none;
 
   --mat-form-field-outlined-container-shape: 12px;
   --mdc-outlined-text-field-container-shape: 12px;
-  --mat-dialog-container-shape: 28px;
-  --mdc-dialog-container-shape: 28px;
+  --mat-dialog-container-shape: 24px;
+  --mdc-dialog-container-shape: 24px;
+  --mat-dialog-container-color: var(--tx-surface-2);
+  --mdc-dialog-container-color: var(--tx-surface-2);
   --mat-menu-container-shape: 14px;
-  --mat-select-container-elevation-shadow: 0 20px 40px -16px rgba(15, 23, 42, 0.3);
+  --mat-menu-container-color: var(--tx-surface-2);
+  --mat-select-panel-background-color: var(--tx-surface-2);
+  --mat-autocomplete-background-color: var(--tx-surface-2);
+  --mat-datepicker-calendar-container-background-color: var(--tx-surface-2);
   --mat-chip-container-shape-radius: 980px;
-  --mat-button-filled-label-text-tracking: -0.01em;
-  --mdc-filled-button-label-text-tracking: -0.01em;
-  --mat-button-outlined-label-text-tracking: -0.01em;
-  --mdc-outlined-button-label-text-tracking: -0.01em;
-  --mat-button-text-label-text-tracking: -0.01em;
-  --mdc-text-button-label-text-tracking: -0.01em;
-  --mat-button-protected-label-text-tracking: -0.01em;
-  --mdc-protected-button-label-text-tracking: -0.01em;
-  --mat-form-field-container-text-tracking: -0.01em;
-  --mat-form-field-outlined-label-text-tracking: -0.01em;
-  --mdc-outlined-text-field-label-text-tracking: -0.01em;
-  --mat-card-title-text-tracking: -0.02em;
-  --mat-list-list-item-label-text-tracking: -0.01em;
   --mdc-chip-container-shape-radius: 980px;
+  --mat-table-background-color: var(--tx-surface);
+  --mat-paginator-container-background-color: var(--tx-surface);
+  --mat-expansion-container-background-color: var(--tx-surface-2);
+  --mat-sidenav-content-background-color: var(--tx-bg);
+  --mat-sidenav-container-background-color: #000;
+  --mat-toolbar-container-background-color: transparent;
+  --mat-snack-bar-container-color: var(--tx-surface-3);
+  --mdc-snackbar-container-color: var(--tx-surface-3);
+  --mat-snack-bar-supporting-text-color: var(--tx-text);
+  --mdc-snackbar-supporting-text-color: var(--tx-text);
+  --mat-snack-bar-button-color: var(--tx-yellow);
+  --mat-slide-toggle-selected-track-color: var(--tx-yellow);
 }
 
-// Botón principal con el destello diagonal de Dcodea.
-.mat-mdc-unelevated-button.mat-primary:not(:disabled),
-.mat-mdc-unelevated-button.mat-warn:not(:disabled) {
-  background-image: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.38) 50%, transparent 70%);
-  background-size: 260% 100%;
-  background-position: 160% 0;
-  background-repeat: no-repeat;
-  transition: background-position 0.7s var(--dc-ease), transform 0.3s var(--dc-ease), box-shadow 0.3s ease;
-
-  &:hover {
-    background-position: -60% 0;
-    transform: scale(1.03);
-    box-shadow: 0 12px 30px -10px color-mix(in srgb, var(--brand) 70%, transparent);
-  }
-}
-
-.mat-mdc-card {
-  border: 1px solid rgba(15, 23, 42, 0.06);
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: var(--dc-font);
+  letter-spacing: -0.011em;
+  color: var(--tx-text);
+  background: var(--tx-bg);
+  -webkit-font-smoothing: antialiased;
 }
 
 * {
   box-sizing: border-box;
 }
+
+::selection {
+  background: rgba(255, 200, 0, 0.3);
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
 
 .trainix-page {
   padding: 24px;
@@ -85,20 +107,52 @@ html, body {
   margin: 0 auto;
 }
 
-.mat-elevation-z2 {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+// Tarjetas: superficie grafito con borde sutil.
+.mat-mdc-card {
+  border: 1px solid var(--tx-line);
+  transition: border-color 0.3s ease;
 }
 
-.status-active    { color: #2e7d32; background: #e8f5e9; }
-.status-expired   { color: #c62828; background: #ffebee; }
-.status-frozen    { color: #1565c0; background: #e3f2fd; }
-.status-cancelled { color: #757575; background: #f5f5f5; }
-.status-pending   { color: #e65100; background: #fff3e0; }
+// Botón principal amarillo con el destello de Dcodea.
+.mat-mdc-unelevated-button.mat-primary:not(:disabled) {
+  background-image: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+  background-size: 260% 100%;
+  background-position: 160% 0;
+  background-repeat: no-repeat;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: background-position 0.7s var(--dc-ease), transform 0.3s var(--dc-ease), box-shadow 0.3s ease;
 
-.text-success { color: #2e7d32; }
-.text-danger  { color: #c62828; }
-.text-warning { color: #e65100; }
-.text-muted   { color: #757575; }
+  &:hover {
+    background-position: -60% 0;
+    transform: translateY(-1px);
+    box-shadow: 0 12px 30px -10px rgba(255, 200, 0, 0.55);
+  }
+}
+
+.mat-mdc-outlined-button:not(:disabled) {
+  border-color: var(--tx-line-strong);
+}
+
+// Tablas
+.mat-mdc-table {
+  .mat-mdc-header-cell {
+    color: var(--tx-text-3);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-bottom-color: var(--tx-line);
+  }
+
+  .mat-mdc-cell {
+    border-bottom-color: var(--tx-line);
+  }
+
+  .mat-mdc-row:hover {
+    background: rgba(255, 255, 255, 0.02);
+  }
+}
 
 // Tablas anchas: scroll horizontal dentro de su tarjeta en pantallas pequeñas.
 .mat-mdc-card:has(> table.mat-mdc-table),
@@ -109,3 +163,10 @@ html, body {
 @media (max-width: 700px) {
   table.mat-mdc-table { min-width: 560px; }
 }
+
+// Insignias de estado (usadas por app-status-badge y en tablas).
+.status-active    { color: var(--tx-green); background: rgba(46, 229, 157, 0.12); }
+.status-expired   { color: var(--tx-red); background: rgba(255, 82, 82, 0.12); }
+.status-frozen    { color: var(--tx-blue); background: rgba(77, 163, 255, 0.12); }
+.status-cancelled { color: var(--tx-text-2); background: rgba(255, 255, 255, 0.06); }
+.status-pending   { color: var(--tx-yellow); background: var(--tx-yellow-soft); }

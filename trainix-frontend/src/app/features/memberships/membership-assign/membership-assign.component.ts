@@ -89,7 +89,7 @@ interface Plan { id: string; name: string; price: number; durationDays: number; 
   `,
   styles: [`
     .form { display: flex; flex-direction: column; gap: 4px; }
-    .plan-info { background: #e8f5e9; padding: 12px; border-radius: 8px; font-size: 0.9rem; }
+    .plan-info { background: var(--tx-yellow-soft); border: 1px solid rgba(255, 200, 0, 0.25); padding: 14px 16px; border-radius: 14px; font-size: 0.9rem; }
     .actions { display: flex; justify-content: flex-end; gap: 12px; }
   `],
 })
