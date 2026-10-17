@@ -20,73 +20,42 @@ import { MatIconModule } from '@angular/material/icon';
   styles: [`
     :host { display: block; height: 100%; }
     .metric {
-      --c: var(--tx-yellow);
-      position: relative;
-      overflow: hidden;
+      --c: var(--tx-text);
+      --soft: var(--tx-surface-2);
       height: 100%;
       padding: 20px 22px;
       border-radius: 20px;
       background: var(--tx-surface);
       border: 1px solid var(--tx-line);
-      transition: transform .4s var(--dc-ease), border-color .3s ease;
+      transition: transform .4s var(--dc-ease), box-shadow .4s ease;
     }
-    .metric::after {
-      content: '';
-      position: absolute;
-      right: -30px;
-      bottom: -30px;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: radial-gradient(closest-side, color-mix(in srgb, var(--c) 22%, transparent), transparent);
-      pointer-events: none;
-    }
-    .metric:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--c) 45%, transparent); }
-    .metric--green { --c: var(--tx-green); }
-    .metric--orange { --c: #ff9f1a; }
-    .metric--red { --c: var(--tx-red); }
-    .metric--blue { --c: var(--tx-blue); }
-    .metric--yellow {
-      background: var(--tx-yellow);
-      border-color: var(--tx-yellow);
-      color: #0a0a0a;
-    }
-    .metric--yellow .metric__label, .metric--yellow .metric__sub { color: rgba(10, 10, 10, 0.65); }
-    .metric--yellow .metric__value { color: #0a0a0a; }
-    .metric--yellow .metric__icon { background: #0a0a0a; color: var(--tx-yellow); }
-    .metric--yellow::after { display: none; }
-
+    .metric:hover { transform: translateY(-2px); box-shadow: var(--tx-shadow); }
+    .metric--green { --c: var(--tx-green); --soft: var(--tx-green-soft); }
+    .metric--orange { --c: var(--tx-orange); --soft: var(--tx-orange-soft); }
+    .metric--red { --c: var(--tx-red); --soft: var(--tx-red-soft); }
+    .metric--blue { --c: var(--tx-blue); --soft: var(--tx-blue-soft); }
+    .metric--yellow { --c: var(--tx-yellow-ink); --soft: var(--tx-yellow-soft); }
     .metric__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-    .metric__label {
-      margin: 4px 0 0;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--tx-text-2);
-    }
+    .metric__label { margin: 6px 0 0; font-size: 0.85rem; font-weight: 500; color: var(--tx-text-2); }
     .metric__icon {
-      display: grid;
-      place-items: center;
-      width: 40px;
-      height: 40px;
-      flex-shrink: 0;
+      display: grid; place-items: center;
+      width: 40px; height: 40px; flex-shrink: 0;
       border-radius: 12px;
       color: var(--c);
-      background: color-mix(in srgb, var(--c) 14%, transparent);
+      background: var(--soft);
     }
-    .metric__icon mat-icon { font-size: 22px; width: 22px; height: 22px; }
+    .metric__icon mat-icon { font-size: 21px; width: 21px; height: 21px; }
     .metric__value {
-      position: relative;
       margin: 14px 0 0;
       font-family: var(--tx-display);
-      font-size: 2.9rem;
-      font-weight: 800;
-      line-height: 1;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
       color: var(--tx-text);
       white-space: nowrap;
     }
-    .metric__sub { position: relative; margin: 6px 0 0; font-size: 0.8rem; color: var(--tx-text-3); }
+    .metric__sub { margin: 6px 0 0; font-size: 0.8rem; color: var(--tx-text-3); }
   `],
 })
 export class MetricCardComponent {

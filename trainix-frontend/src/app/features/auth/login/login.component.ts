@@ -22,13 +22,13 @@ import { DEMO_CREDENTIALS } from '../../../core/demo/demo-data';
   template: `
     <form [formGroup]="form" (ngSubmit)="submit()" class="login-form">
       <header class="head">
-        <h2 class="title">Bienvenido<br /><span>de vuelta</span></h2>
+        <h2 class="title">Bienvenido de vuelta</h2>
         <p class="sub">Ingresa a tu panel de gestión.</p>
       </header>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Correo electrónico</mat-label>
-        <mat-icon matPrefix>alternate_email</mat-icon>
+        <mat-icon matPrefix>mail</mat-icon>
         <input matInput type="email" formControlName="email" autocomplete="email" />
         @if (form.get('email')?.hasError('required') && form.get('email')?.touched) {
           <mat-error>El correo es requerido</mat-error>
@@ -85,38 +85,34 @@ import { DEMO_CREDENTIALS } from '../../../core/demo/demo-data';
     </form>
   `,
   styles: [`
-    .login-form { display: flex; flex-direction: column; gap: 14px; }
-    .head { margin-bottom: 14px; }
+    .login-form { display: flex; flex-direction: column; gap: 12px; }
+    .head { margin-bottom: 16px; }
     .title {
       margin: 0;
       font-family: var(--tx-display);
-      font-weight: 900;
-      font-style: italic;
-      text-transform: uppercase;
-      font-size: 3.4rem;
-      line-height: 0.9;
-      letter-spacing: 0;
+      font-weight: 700;
+      font-size: 2.1rem;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
       color: var(--tx-text);
     }
-    .title span { color: var(--tx-yellow); }
-    .sub { margin: 12px 0 0; color: var(--tx-text-2); font-size: 0.98rem; }
+    .sub { margin: 10px 0 0; color: var(--tx-text-2); font-size: 1rem; }
     .full-width { width: 100%; }
-    .submit-btn { height: 52px; font-size: 1rem; }
+    mat-form-field mat-icon { color: var(--tx-text-3); }
+    .submit-btn { height: 50px; font-size: 1rem; margin-top: 4px; }
     .error-banner {
       display: flex; align-items: center; gap: 8px;
-      background: rgba(255, 82, 82, 0.1); color: var(--tx-red);
-      border: 1px solid rgba(255, 82, 82, 0.25);
+      background: var(--tx-red-soft); color: var(--tx-red);
       padding: 12px 14px; border-radius: 12px; font-size: 0.9rem;
     }
-    .forgot-link { text-align: center; color: var(--tx-text-2); font-size: 0.875rem; text-decoration: none; }
-    .forgot-link:hover { color: var(--tx-yellow); }
+    .forgot-link { text-align: center; color: var(--tx-text-2); font-size: 0.875rem; text-decoration: none; margin-top: 4px; }
+    .forgot-link:hover { color: var(--tx-text); }
     mat-spinner { margin: 0 auto; }
 
-    .demo { margin-top: 18px; }
+    .demo { margin-top: 24px; }
     .demo__label {
       display: flex; align-items: center; gap: 12px; margin: 0 0 14px;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
-      color: var(--tx-text-3);
+      font-size: 0.78rem; font-weight: 600; color: var(--tx-text-3);
     }
     .demo__label span { flex: 1; height: 1px; background: var(--tx-line); }
     .demo__roles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -129,10 +125,10 @@ import { DEMO_CREDENTIALS } from '../../../core/demo/demo-data';
       color: var(--tx-text);
       font: inherit; font-size: 0.85rem; font-weight: 600;
       cursor: pointer;
-      transition: border-color .25s ease, transform .3s var(--dc-ease), background-color .25s ease;
+      transition: border-color .25s ease, transform .3s var(--dc-ease), box-shadow .3s ease;
     }
-    .role mat-icon { color: var(--tx-yellow); }
-    .role:hover:not(:disabled) { border-color: var(--tx-yellow); transform: translateY(-2px); background: var(--tx-surface-2); }
+    .role mat-icon { color: var(--tx-text-2); }
+    .role:hover:not(:disabled) { border-color: var(--tx-ink); transform: translateY(-2px); box-shadow: var(--tx-shadow); }
     .demo__note { margin: 12px 0 0; text-align: center; font-size: 0.78rem; color: var(--tx-text-3); }
   `],
 })
@@ -147,7 +143,7 @@ export class LoginComponent {
   errorMessage = signal('');
   isDemo       = environment.demo;
   demoCredentials = DEMO_CREDENTIALS;
-  roleIcons = ['admin_panel_settings', 'support_agent', 'fitness_center'];
+  roleIcons = ['shield_person', 'badge', 'exercise'];
 
   form = this.fb.group({
     email:    ['', [Validators.required, Validators.email]],

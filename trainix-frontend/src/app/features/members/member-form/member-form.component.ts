@@ -6,7 +6,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
@@ -21,7 +20,7 @@ import { compact, toDateOnly } from '../../../shared/labels';
   imports: [
     ReactiveFormsModule, PageHeaderComponent,
     MatFormFieldModule, MatInputModule, MatSelectModule,
-    MatButtonModule, MatDatepickerModule, MatNativeDateModule,
+    MatButtonModule, MatDatepickerModule,
     MatCardModule, MatIconModule,
   ],
   template: `

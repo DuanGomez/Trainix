@@ -4,31 +4,39 @@
 @use './typography';
 
 // ============================================================
-// Trainix — identidad deportiva: negro grafito + amarillo eléctrico,
-// títulos condensados en mayúsculas. Base del ADN Dcodea (dcodea-dna.css).
+// Trainix — interfaz clara estilo Apple (misma línea que SaaS Ventas):
+// fondo crema, tarjetas blancas, tinta para acciones y amarillo de marca como acento.
 // ============================================================
 
 :root {
-  --tx-bg: #0a0a0a;
-  --tx-surface: #141414;
-  --tx-surface-2: #1c1c1c;
-  --tx-surface-3: #242424;
-  --tx-line: rgba(255, 255, 255, 0.08);
-  --tx-line-strong: rgba(255, 255, 255, 0.14);
-  --tx-text: #f5f5f5;
-  --tx-text-2: #a3a3a3;
-  --tx-text-3: #6b6b6b;
+  --tx-bg: #fafaf7;
+  --tx-surface: #ffffff;
+  --tx-surface-2: #f4f3ef;
+  --tx-surface-3: #ecebe6;
+  --tx-line: #e6e4de;
+  --tx-line-strong: #d6d4cd;
+  --tx-text: #131316;
+  --tx-text-2: #55565c;
+  --tx-text-3: #8b8b91;
+  --tx-ink: #131316;
   --tx-yellow: #ffc800;
-  --tx-yellow-2: #ffe14d;
-  --tx-yellow-soft: rgba(255, 200, 0, 0.12);
-  --tx-green: #2ee59d;
-  --tx-red: #ff5252;
-  --tx-blue: #4da3ff;
-  --tx-display: 'Barlow Condensed', 'Inter', sans-serif;
+  --tx-yellow-2: #ffdb4d;
+  --tx-yellow-soft: #fff6d6;
+  --tx-yellow-ink: #8a6100;
+  --tx-green: #1e9e63;
+  --tx-green-soft: #e5f6ec;
+  --tx-red: #d1432f;
+  --tx-red-soft: #fdecea;
+  --tx-blue: #2f6fe4;
+  --tx-blue-soft: #e8f0fd;
+  --tx-orange: #d97706;
+  --tx-orange-soft: #fdf1e2;
+  --tx-display: 'Sora', 'Inter', sans-serif;
+  --tx-shadow: 0 1px 2px rgba(19, 19, 22, 0.04), 0 12px 32px -18px rgba(19, 19, 22, 0.18);
 
   // ADN Dcodea con la marca de Trainix
   --brand: #ffc800;
-  --brand-2: #ffe14d;
+  --brand-2: #ffdb4d;
 
   // Formas
   --mat-button-filled-container-shape: 980px;
@@ -39,8 +47,22 @@
   --mdc-outlined-button-container-shape: 980px;
   --mdc-text-button-container-shape: 980px;
   --mdc-protected-button-container-shape: 980px;
-  --mat-button-filled-label-text-weight: 700;
-  --mdc-filled-button-label-text-weight: 700;
+  --mat-button-filled-label-text-weight: 600;
+  --mdc-filled-button-label-text-weight: 600;
+  --mat-button-outlined-label-text-weight: 600;
+  --mdc-outlined-button-label-text-weight: 600;
+
+  --mat-button-filled-label-text-tracking: -0.005em;
+  --mdc-filled-button-label-text-tracking: -0.005em;
+  --mat-button-outlined-label-text-tracking: -0.005em;
+  --mdc-outlined-button-label-text-tracking: -0.005em;
+  --mat-button-text-label-text-tracking: -0.005em;
+  --mdc-text-button-label-text-tracking: -0.005em;
+  --mat-button-protected-label-text-tracking: -0.005em;
+  --mdc-protected-button-label-text-tracking: -0.005em;
+  --mat-form-field-container-text-tracking: -0.005em;
+  --mat-form-field-outlined-label-text-tracking: -0.005em;
+  --mdc-outlined-text-field-label-text-tracking: -0.005em;
 
   --mat-card-elevated-container-shape: 20px;
   --mat-card-outlined-container-shape: 20px;
@@ -53,36 +75,28 @@
 
   --mat-form-field-outlined-container-shape: 12px;
   --mdc-outlined-text-field-container-shape: 12px;
+  --mat-form-field-outlined-outline-color: var(--tx-line-strong);
+  --mdc-outlined-text-field-outline-color: var(--tx-line-strong);
   --mat-dialog-container-shape: 24px;
   --mdc-dialog-container-shape: 24px;
-  --mat-dialog-container-color: var(--tx-surface-2);
-  --mdc-dialog-container-color: var(--tx-surface-2);
   --mat-menu-container-shape: 14px;
-  --mat-menu-container-color: var(--tx-surface-2);
-  --mat-select-panel-background-color: var(--tx-surface-2);
-  --mat-autocomplete-background-color: var(--tx-surface-2);
-  --mat-datepicker-calendar-container-background-color: var(--tx-surface-2);
   --mat-chip-container-shape-radius: 980px;
   --mdc-chip-container-shape-radius: 980px;
-  --mat-table-background-color: var(--tx-surface);
-  --mat-paginator-container-background-color: var(--tx-surface);
-  --mat-expansion-container-background-color: var(--tx-surface-2);
   --mat-sidenav-content-background-color: var(--tx-bg);
-  --mat-sidenav-container-background-color: #000;
+  --mat-sidenav-container-background-color: var(--tx-ink);
   --mat-toolbar-container-background-color: transparent;
-  --mat-snack-bar-container-color: var(--tx-surface-3);
-  --mdc-snackbar-container-color: var(--tx-surface-3);
-  --mat-snack-bar-supporting-text-color: var(--tx-text);
-  --mdc-snackbar-supporting-text-color: var(--tx-text);
+  --mat-paginator-container-background-color: transparent;
+  --mat-table-background-color: transparent;
+  --mat-snack-bar-container-color: var(--tx-ink);
+  --mdc-snackbar-container-color: var(--tx-ink);
   --mat-snack-bar-button-color: var(--tx-yellow);
-  --mat-slide-toggle-selected-track-color: var(--tx-yellow);
 }
 
 html, body {
   height: 100%;
   margin: 0;
-  font-family: var(--dc-font);
-  letter-spacing: -0.011em;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  letter-spacing: -0.006em;
   color: var(--tx-text);
   background: var(--tx-bg);
   -webkit-font-smoothing: antialiased;
@@ -93,13 +107,24 @@ html, body {
 }
 
 ::selection {
-  background: rgba(255, 200, 0, 0.3);
+  background: rgba(255, 200, 0, 0.35);
 }
 
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 8px; }
-::-webkit-scrollbar-thumb:hover { background: #3a3a3a; }
+// Íconos: Material Symbols redondeados de trazo fino (más cercanos a SF Symbols).
+.mat-icon,
+.material-symbols-rounded {
+  font-family: 'Material Symbols Rounded';
+  font-size: 24px;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
 
 .trainix-page {
   padding: 24px;
@@ -107,54 +132,53 @@ html, body {
   margin: 0 auto;
 }
 
-// Tarjetas: superficie grafito con borde sutil.
+// Tarjetas blancas con borde suave.
 .mat-mdc-card {
   border: 1px solid var(--tx-line);
-  transition: border-color 0.3s ease;
+  box-shadow: none;
 }
 
-// Botón principal amarillo con el destello de Dcodea.
+// Botón principal (tinta) con el destello de Dcodea.
 .mat-mdc-unelevated-button.mat-primary:not(:disabled) {
-  background-image: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+  background-image: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.28) 50%, transparent 70%);
   background-size: 260% 100%;
   background-position: 160% 0;
   background-repeat: no-repeat;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
   transition: background-position 0.7s var(--dc-ease), transform 0.3s var(--dc-ease), box-shadow 0.3s ease;
 
   &:hover {
     background-position: -60% 0;
     transform: translateY(-1px);
-    box-shadow: 0 12px 30px -10px rgba(255, 200, 0, 0.55);
+    box-shadow: 0 12px 26px -12px rgba(19, 19, 22, 0.55);
   }
 }
 
 .mat-mdc-outlined-button:not(:disabled) {
   border-color: var(--tx-line-strong);
+  background: var(--tx-surface);
 }
 
 // Tablas
 .mat-mdc-table {
   .mat-mdc-header-cell {
     color: var(--tx-text-3);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     border-bottom-color: var(--tx-line);
   }
 
   .mat-mdc-cell {
-    border-bottom-color: var(--tx-line);
+    color: var(--tx-text);
+    border-bottom-color: var(--tx-surface-2);
   }
 
   .mat-mdc-row:hover {
-    background: rgba(255, 255, 255, 0.02);
+    background: var(--tx-bg);
   }
 }
 
-// Tablas anchas: scroll horizontal dentro de su tarjeta en pantallas pequeñas.
 .mat-mdc-card:has(> table.mat-mdc-table),
 .mat-mdc-card-content:has(> table.mat-mdc-table) {
   overflow-x: auto;
@@ -162,11 +186,14 @@ html, body {
 
 @media (max-width: 700px) {
   table.mat-mdc-table { min-width: 560px; }
+  // Filas en una sola línea con desplazamiento horizontal limpio, en vez de celdas apretadas.
+  .mat-mdc-table .mat-mdc-cell,
+  .mat-mdc-table .mat-mdc-header-cell { white-space: nowrap; padding: 0 14px; }
+  .trainix-page { padding: 16px; }
 }
 
-// Insignias de estado (usadas por app-status-badge y en tablas).
-.status-active    { color: var(--tx-green); background: rgba(46, 229, 157, 0.12); }
-.status-expired   { color: var(--tx-red); background: rgba(255, 82, 82, 0.12); }
-.status-frozen    { color: var(--tx-blue); background: rgba(77, 163, 255, 0.12); }
-.status-cancelled { color: var(--tx-text-2); background: rgba(255, 255, 255, 0.06); }
-.status-pending   { color: var(--tx-yellow); background: var(--tx-yellow-soft); }
+.status-active    { color: var(--tx-green); background: var(--tx-green-soft); }
+.status-expired   { color: var(--tx-red); background: var(--tx-red-soft); }
+.status-frozen    { color: var(--tx-blue); background: var(--tx-blue-soft); }
+.status-cancelled { color: var(--tx-text-2); background: var(--tx-surface-2); }
+.status-pending   { color: var(--tx-yellow-ink); background: var(--tx-yellow-soft); }

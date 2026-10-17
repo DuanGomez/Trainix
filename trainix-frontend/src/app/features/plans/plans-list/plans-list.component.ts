@@ -77,11 +77,11 @@ interface Plan {
     </div>
   `,
   styles: [`
-    .plan-card mat-card-title { font-family: var(--tx-display); font-size: 1.9rem; font-weight: 800; font-style: italic; text-transform: uppercase; line-height: 1; }
-    .plan-card mat-card-subtitle { margin-top: 6px; text-transform: uppercase; letter-spacing: .1em; font-size: .72rem; font-weight: 700; }
+    .plan-card mat-card-title { font-family: var(--tx-display); font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; }
+    .plan-card mat-card-subtitle { margin-top: 4px; font-size: .85rem; }
     .plans-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
     .plan-card { cursor: default; }
-    .price { font-family: var(--tx-display); font-size: 2.6rem; font-weight: 800; line-height: 1; color: var(--tx-text); margin: 10px 0; }
+    .price { font-family: var(--tx-display); font-size: 2rem; font-weight: 700; letter-spacing: -0.04em; color: var(--tx-text); margin: 12px 0; }
     .desc { color: var(--tx-text-2); font-size: 0.9rem; }
     .features { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
   `],

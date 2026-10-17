@@ -18,16 +18,16 @@ import { AuthStore } from '../../core/auth/auth.store';
     } @else if (store.summary(); as s) {
       <!-- Banner del día -->
       <section class="hero">
-        <div class="hero__stripes" aria-hidden="true"><i></i><i></i></div>
         <div class="hero__copy">
           <p class="hero__kicker">{{ today }}</p>
           <h1 class="hero__title">Hola, <span>{{ firstName() }}</span></h1>
           <p class="hero__lead">Así va tu gimnasio hoy.</p>
           <div class="hero__actions">
-            <a mat-flat-button color="primary" routerLink="/attendance"><mat-icon>bolt</mat-icon> Check-in rápido</a>
+            <a mat-flat-button color="primary" routerLink="/attendance"><mat-icon>login</mat-icon> Check-in rápido</a>
             <a mat-stroked-button routerLink="/members/new"><mat-icon>person_add</mat-icon> Nuevo cliente</a>
           </div>
         </div>
+        <div class="hero__photo"><img src="photos/dashboard.webp" alt="" /></div>
         <div class="hero__stats">
           <div>
             <strong>{{ s.todayAttendance }}</strong>
@@ -42,7 +42,7 @@ import { AuthStore } from '../../core/auth/auth.store';
 
       <!-- Métricas -->
       <div class="metrics">
-        <app-metric-card label="Clientes activos" [value]="s.activeMembers" icon="groups" [subtitle]="s.totalMembers + ' en total'" color="yellow" />
+        <app-metric-card label="Clientes activos" [value]="s.activeMembers" icon="group" [subtitle]="s.totalMembers + ' en total'" color="yellow" />
         <app-metric-card label="Ingresos del mes" [value]="(s.monthRevenue | currency:'COP':'symbol-narrow':'1.0-0') ?? ''" icon="trending_up" color="green" />
         <app-metric-card label="Por vencer" [value]="s.expiringMemberships" icon="event_busy" subtitle="Próximos 7 días" color="orange" />
         <app-metric-card label="Nuevos clientes" [value]="s.newMembersMonth" icon="person_add" subtitle="Este mes" color="blue" />
@@ -96,7 +96,7 @@ import { AuthStore } from '../../core/auth/auth.store';
           <a class="shortcut" [routerLink]="a.route">
             <span class="shortcut__icon"><mat-icon>{{ a.icon }}</mat-icon></span>
             <span class="shortcut__text"><strong>{{ a.label }}</strong><small>{{ a.hint }}</small></span>
-            <mat-icon class="shortcut__arrow">arrow_forward</mat-icon>
+            <mat-icon class="shortcut__arrow">chevron_right</mat-icon>
           </a>
         }
       </div>
@@ -107,70 +107,55 @@ import { AuthStore } from '../../core/auth/auth.store';
 
     /* Banner */
     .hero {
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 28px;
-      padding: clamp(24px, 4vw, 40px);
+      display: grid;
+      grid-template-columns: 1fr minmax(240px, 34%);
+      grid-template-areas: "copy photo" "stats photo";
+      gap: 8px 32px;
+      padding: 32px;
       margin-bottom: 20px;
       border-radius: 28px;
-      background:
-        radial-gradient(60% 120% at 100% 0%, rgba(255, 200, 0, 0.22), transparent 60%),
-        linear-gradient(135deg, #161616, #0d0d0d);
+      background: var(--tx-surface);
       border: 1px solid var(--tx-line);
     }
-    .hero__stripes {
-      position: absolute;
-      right: 6%;
-      top: -20%;
-      bottom: -20%;
-      display: flex;
-      gap: 18px;
-      transform: skewX(-18deg);
-      pointer-events: none;
-    }
-    .hero__stripes i { width: 46px; background: linear-gradient(180deg, rgba(255, 200, 0, 0.35), transparent); }
-    .hero__stripes i:last-child { width: 26px; opacity: 0.6; }
-    .hero__copy { position: relative; }
-    .hero__kicker {
-      margin: 0 0 10px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--tx-yellow);
-    }
+    .hero__copy { grid-area: copy; }
+    .hero__kicker { margin: 0 0 10px; font-size: 0.85rem; font-weight: 500; color: var(--tx-text-3); }
     .hero__title {
       margin: 0;
       font-family: var(--tx-display);
-      font-size: clamp(2.8rem, 6vw, 4.6rem);
-      font-weight: 900;
-      font-style: italic;
-      text-transform: uppercase;
-      line-height: 0.9;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
     }
-    .hero__title span { color: var(--tx-yellow); }
-    .hero__lead { margin: 10px 0 0; color: var(--tx-text-2); }
+    .hero__title span { color: var(--tx-text); box-shadow: inset 0 -0.32em 0 var(--tx-yellow-soft); }
+    .hero__lead { margin: 10px 0 0; color: var(--tx-text-2); font-size: 1.02rem; }
     .hero__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
-    .hero__stats { position: relative; display: flex; gap: clamp(20px, 4vw, 48px); }
+    .hero__photo {
+      grid-area: photo;
+      min-height: 220px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--tx-surface-2);
+    }
+    .hero__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .hero__stats {
+      grid-area: stats;
+      align-self: end;
+      display: flex;
+      gap: 40px;
+      padding-top: 24px;
+      margin-top: 8px;
+      border-top: 1px solid var(--tx-line);
+    }
     .hero__stats div { display: flex; flex-direction: column; }
     .hero__stats strong {
       font-family: var(--tx-display);
-      font-size: clamp(2.6rem, 5vw, 4rem);
-      font-weight: 800;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
       line-height: 1;
     }
-    .hero__stats span {
-      margin-top: 6px;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--tx-text-2);
-    }
+    .hero__stats span { margin-top: 6px; font-size: 0.82rem; color: var(--tx-text-3); }
 
     /* Métricas */
     .metrics {
@@ -183,56 +168,36 @@ import { AuthStore } from '../../core/auth/auth.store';
     /* Gráficos */
     .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 32px; }
     .panel {
-      padding: 22px 24px;
+      padding: 24px;
       border-radius: 24px;
       background: var(--tx-surface);
       border: 1px solid var(--tx-line);
     }
     .panel__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-    .panel__head h2 {
-      margin: 0;
-      font-family: var(--tx-display);
-      font-size: 1.7rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      line-height: 1;
-    }
-    .panel__head p { margin: 4px 0 0; font-size: 0.8rem; color: var(--tx-text-3); }
-    .panel__total { font-family: var(--tx-display); font-size: 1.7rem; font-weight: 800; line-height: 1; }
-    .panel__total small { font-size: 0.9rem; color: var(--tx-text-3); font-weight: 600; }
-    .bars { display: flex; align-items: stretch; gap: 10px; height: 210px; margin-top: 20px; }
-    .bar { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; --c: var(--tx-yellow); }
-    .bar--green { --c: var(--tx-green); }
-    .bar__value { font-size: 0.7rem; font-weight: 700; color: var(--tx-text-3); white-space: nowrap; }
+    .panel__head h2 { margin: 0; font-family: var(--tx-display); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; }
+    .panel__head p { margin: 4px 0 0; font-size: 0.82rem; color: var(--tx-text-3); }
+    .panel__total { font-family: var(--tx-display); font-size: 1.4rem; font-weight: 700; letter-spacing: -0.03em; }
+    .panel__total small { font-family: Inter, sans-serif; font-size: 0.82rem; color: var(--tx-text-3); font-weight: 500; }
+    .bars { display: flex; align-items: stretch; gap: 10px; height: 210px; margin-top: 24px; }
+    .bar { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; --c: var(--tx-ink); }
+    .bar--green { --c: var(--tx-ink); }
+    .bar__value { font-size: 0.72rem; font-weight: 600; color: var(--tx-text-3); white-space: nowrap; }
     .bar__track { flex: 1; width: 100%; display: flex; align-items: flex-end; }
     .bar__track i {
       display: block;
       width: 100%;
       min-height: 4px;
-      border-radius: 8px 8px 3px 3px;
-      background: color-mix(in srgb, var(--c) 28%, var(--tx-surface-3));
+      border-radius: 10px;
+      background: var(--tx-surface-3);
       transition: height .6s var(--dc-ease-out), background-color .3s ease;
     }
-    .bar:hover .bar__track i { background: color-mix(in srgb, var(--c) 60%, var(--tx-surface-3)); }
-    .bar--now .bar__track i { background: var(--c); box-shadow: 0 0 24px -4px var(--c); }
-    .bar--now .bar__value { color: var(--c); }
-    .bar__label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--tx-text-3);
-      white-space: nowrap;
-    }
+    .bar:hover .bar__track i { background: var(--tx-line-strong); }
+    .bar--now .bar__track i { background: var(--tx-yellow); }
+    .bar--now .bar__value { color: var(--tx-text); }
+    .bar__label { font-size: 0.72rem; font-weight: 500; color: var(--tx-text-3); white-space: nowrap; }
 
     /* Accesos rápidos */
-    .section-label {
-      margin: 0 0 14px;
-      font-family: var(--tx-display);
-      font-size: 1.5rem;
-      font-weight: 800;
-      text-transform: uppercase;
-    }
+    .section-label { margin: 0 0 14px; font-family: var(--tx-display); font-size: 1.15rem; font-weight: 700; letter-spacing: -0.02em; }
     .shortcuts { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; }
     .shortcut {
       display: flex;
@@ -244,27 +209,28 @@ import { AuthStore } from '../../core/auth/auth.store';
       border: 1px solid var(--tx-line);
       color: var(--tx-text);
       text-decoration: none;
-      transition: border-color .25s ease, transform .3s var(--dc-ease), background-color .25s ease;
+      transition: transform .3s var(--dc-ease), box-shadow .3s ease;
     }
-    .shortcut:hover { border-color: var(--tx-yellow); transform: translateY(-2px); background: var(--tx-surface-2); }
+    .shortcut:hover { transform: translateY(-2px); box-shadow: var(--tx-shadow); }
     .shortcut__icon {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      flex-shrink: 0;
+      display: grid; place-items: center;
+      width: 44px; height: 44px; flex-shrink: 0;
       border-radius: 12px;
-      background: var(--tx-yellow-soft);
-      color: var(--tx-yellow);
+      background: var(--tx-surface-2);
+      color: var(--tx-text);
     }
     .shortcut__text { display: flex; flex-direction: column; flex: 1; min-width: 0; }
-    .shortcut__text strong { font-size: 0.95rem; }
-    .shortcut__text small { color: var(--tx-text-3); font-size: 0.78rem; }
-    .shortcut__arrow { color: var(--tx-text-3); transition: transform .3s var(--dc-ease), color .2s ease; }
-    .shortcut:hover .shortcut__arrow { color: var(--tx-yellow); transform: translateX(3px); }
+    .shortcut__text strong { font-size: 0.95rem; font-weight: 600; }
+    .shortcut__text small { color: var(--tx-text-3); font-size: 0.8rem; }
+    .shortcut__arrow { color: var(--tx-text-3); transition: transform .3s var(--dc-ease); }
+    .shortcut:hover .shortcut__arrow { transform: translateX(3px); color: var(--tx-text); }
 
-    @media (max-width: 900px) { .charts { grid-template-columns: 1fr; } }
-    @media (max-width: 600px) { .hero__stripes { display: none; } .bars { height: 170px; gap: 6px; } }
+    @media (max-width: 900px) {
+      .charts { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; grid-template-areas: "photo" "copy" "stats"; padding: 20px; }
+      .hero__photo { min-height: 180px; }
+    }
+    @media (max-width: 600px) { .bars { height: 170px; gap: 6px; } }
   `],
 })
 export class DashboardComponent implements OnInit {
@@ -272,13 +238,15 @@ export class DashboardComponent implements OnInit {
   private auth = inject(AuthStore);
 
   firstName = computed(() => this.auth.currentUser()?.firstName ?? '');
-  today = new Date().toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
+  today = ((d) => d.charAt(0).toUpperCase() + d.slice(1))(
+    new Date().toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' }),
+  );
 
   shortcuts = [
-    { label: 'Nueva membresía', hint: 'Asignar un plan', icon: 'card_membership', route: '/memberships/new' },
+    { label: 'Nueva membresía', hint: 'Asignar un plan', icon: 'id_card', route: '/memberships/new' },
     { label: 'Registrar pago', hint: 'Efectivo, tarjeta o transferencia', icon: 'payments', route: '/payments/new' },
     { label: 'Caja', hint: 'Apertura y cierre', icon: 'point_of_sale', route: '/cash-register' },
-    { label: 'Rutinas', hint: 'Planes de entrenamiento', icon: 'fitness_center', route: '/routines' },
+    { label: 'Rutinas', hint: 'Planes de entrenamiento', icon: 'exercise', route: '/routines' },
   ];
 
   ngOnInit(): void { this.store.load(); }

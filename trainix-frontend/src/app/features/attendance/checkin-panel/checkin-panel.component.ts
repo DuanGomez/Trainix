@@ -89,6 +89,7 @@ interface CheckinResult {
       </div>
 
       <div class="checkin-right">
+        <img class="checkin-photo" src="photos/checkin.webp" alt="" />
         <div class="time-display">
           <p class="current-time">{{ now | date:'HH:mm' }}</p>
           <p class="current-date">{{ now | date:'EEEE, dd MMMM yyyy':'':'es-CO' }}</p>
@@ -100,53 +101,48 @@ interface CheckinResult {
     </div>
   `,
   styles: [`
-    .checkin-page { display: grid; grid-template-columns: 1fr 320px; gap: 20px; max-width: 1100px; }
-    .checkin-card { padding: 8px; border-radius: 24px; }
+    .checkin-page { display: grid; grid-template-columns: 1fr 340px; gap: 20px; max-width: 1100px; }
+    .checkin-card { padding: 12px; border-radius: 24px; }
     .checkin-card mat-card-title {
       display: flex; align-items: center; gap: 10px;
-      font-family: var(--tx-display); font-size: 1.8rem; font-weight: 800; text-transform: uppercase;
+      font-family: var(--tx-display); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em;
     }
-    .checkin-card mat-card-title mat-icon { color: var(--tx-yellow); }
-    .hint { color: var(--tx-text-2); font-size: 0.9rem; margin: 8px 0 18px; }
+    .checkin-card mat-card-title mat-icon { color: var(--tx-text-2); }
+    .hint { color: var(--tx-text-2); font-size: 0.92rem; margin: 6px 0 18px; }
     .full-width { width: 100%; }
-    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-row button { height: 48px; padding: 0 22px; }
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn-row button { height: 46px; padding: 0 22px; }
     .result-error {
       display: flex; align-items: center; gap: 10px;
-      margin-top: 18px; padding: 14px 16px; border-radius: 16px;
-      background: rgba(255, 82, 82, 0.1); color: var(--tx-red);
-      border: 1px solid rgba(255, 82, 82, 0.25); font-weight: 600;
+      margin-top: 18px; padding: 14px 16px; border-radius: 14px;
+      background: var(--tx-red-soft); color: var(--tx-red); font-weight: 500;
     }
     .result-success {
-      margin-top: 18px; padding: 20px; border-radius: 20px;
-      background: linear-gradient(135deg, rgba(46, 229, 157, 0.14), rgba(46, 229, 157, 0.04));
-      border: 1px solid rgba(46, 229, 157, 0.3);
+      margin-top: 18px; padding: 20px; border-radius: 18px;
+      background: var(--tx-green-soft);
       display: flex; flex-direction: column; gap: 10px;
       animation: pop .5s var(--dc-ease-out) both;
     }
-    .success-icon { color: var(--tx-green); font-size: 36px; width: 36px; height: 36px; }
+    .success-icon { color: var(--tx-green); font-size: 32px; width: 32px; height: 32px; }
     .member-info { display: flex; flex-direction: column; }
-    .member-info strong {
-      font-family: var(--tx-display); font-size: 2.2rem; font-weight: 800; text-transform: uppercase; line-height: 1;
-    }
-    .code { color: var(--tx-text-2); font-size: 0.85rem; font-family: var(--dc-mono); margin-top: 4px; }
+    .member-info strong { font-family: var(--tx-display); font-size: 1.6rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; }
+    .code { color: var(--tx-text-2); font-size: 0.85rem; margin-top: 2px; }
     .membership-info { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; font-size: 0.9rem; color: var(--tx-text-2); }
-    .recorded-at { color: var(--tx-green); font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.85rem; }
+    .recorded-at { color: var(--tx-green); font-weight: 600; margin: 0; font-size: 0.9rem; }
     .checkin-right {
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
-      padding: 32px 20px; border-radius: 24px;
-      background:
-        radial-gradient(80% 60% at 50% 0%, rgba(255, 200, 0, 0.18), transparent 70%),
-        var(--tx-surface);
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+      padding: 12px 12px 24px; border-radius: 24px;
+      background: var(--tx-surface);
       border: 1px solid var(--tx-line);
     }
+    .checkin-photo { width: 100%; height: 170px; object-fit: cover; border-radius: 16px; display: block; }
     .time-display { text-align: center; }
     .current-time {
-      margin: 0; font-family: var(--tx-display); font-size: 5.4rem; font-weight: 900; font-style: italic;
-      line-height: 1; color: var(--tx-yellow);
+      margin: 0; font-family: var(--tx-display); font-size: 3.6rem; font-weight: 700;
+      letter-spacing: -0.05em; line-height: 1; color: var(--tx-text);
     }
-    .current-date { color: var(--tx-text-2); margin: 8px 0 0; text-transform: capitalize; }
-    @keyframes pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+    .current-date { color: var(--tx-text-3); margin: 8px 0 0; text-transform: capitalize; }
+    @keyframes pop { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
     @media (max-width: 800px) { .checkin-page { grid-template-columns: 1fr; } }
   `],
 })

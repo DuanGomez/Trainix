@@ -46,12 +46,12 @@ import { NotificationService } from '../../../core/services/notification.service
   `,
   styles: [`
     .form { display: flex; flex-direction: column; gap: 16px; }
-    .form-title { margin: 0; font-family: var(--tx-display); font-weight: 900; font-style: italic; text-transform: uppercase; font-size: 2.6rem; line-height: .95; color: var(--tx-text); }
+    .form-title { margin: 0; font-family: var(--tx-display); font-weight: 700; font-size: 2rem; line-height: 1.1; letter-spacing: -0.035em; color: var(--tx-text); }
     .subtitle { color: var(--tx-text-2); font-size: 0.95rem; margin: 0 0 8px; }
     .full-width { width: 100%; }
     .success-state { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
-    .success-icon { font-size: 64px; width: 64px; height: 64px; color: var(--tx-yellow); }
-    .success-state h2 { font-family: var(--tx-display); font-weight: 900; font-style: italic; text-transform: uppercase; font-size: 2.2rem; margin: 0; }
+    .success-icon { font-size: 64px; width: 64px; height: 64px; color: var(--tx-green); }
+    .success-state h2 { font-family: var(--tx-display); font-weight: 700; font-size: 1.7rem; letter-spacing: -0.03em; margin: 0; }
     .success-state p { color: var(--tx-text-2); margin: 0 0 8px; }
   `],
 })

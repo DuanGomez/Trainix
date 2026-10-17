@@ -8,7 +8,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { ApiService } from '../../../core/services/api.service';
 import { NotificationService } from '../../../core/services/notification.service';
@@ -21,7 +20,7 @@ interface Plan { id: string; name: string; price: number; durationDays: number; 
   imports: [
     ReactiveFormsModule, CurrencyPipe, DatePipe,
     MatFormFieldModule, MatInputModule, MatSelectModule,
-    MatButtonModule, MatCardModule, MatDatepickerModule, MatNativeDateModule,
+    MatButtonModule, MatCardModule, MatDatepickerModule,
     PageHeaderComponent,
   ],
   template: `

@@ -4,7 +4,7 @@ import {
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { HttpInterceptorFn, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_LOCALE, provideNativeDateAdapter } from '@angular/material/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { routes } from './app.routes';
 import { environment } from '../environments/environment';
@@ -13,6 +13,7 @@ import { errorInterceptor } from './core/interceptors/error.interceptor';
 import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 import { demoBackendInterceptor } from './core/demo/demo-backend.interceptor';
 import { SpanishPaginatorIntl } from './core/i18n/paginator-intl';
+import { CoDateAdapter } from './core/date/co-date-adapter';
 
 // En modo demo (GitHub Pages) el último interceptor responde en lugar del servidor.
 const interceptors: HttpInterceptorFn[] = [authInterceptor, errorInterceptor, loadingInterceptor];
@@ -27,6 +28,8 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALE_ID, useValue: 'es-CO' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'COP' },
     { provide: MAT_DATE_LOCALE, useValue: 'es-CO' },
+    provideNativeDateAdapter(),
+    { provide: DateAdapter, useClass: CoDateAdapter },
     { provide: MatPaginatorIntl, useClass: SpanishPaginatorIntl },
   ],
 };

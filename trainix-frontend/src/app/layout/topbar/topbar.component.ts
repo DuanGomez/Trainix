@@ -32,7 +32,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
       <span class="spacer"></span>
 
       <a mat-flat-button color="primary" class="quick" routerLink="/attendance">
-        <mat-icon>bolt</mat-icon> Check-in
+        <mat-icon>login</mat-icon> Check-in
       </a>
 
       <button mat-icon-button aria-label="Notificaciones">
@@ -64,7 +64,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
       height: 68px;
       gap: 8px;
       padding: 0 clamp(8px, 2vw, 28px);
-      background: rgba(10, 10, 10, 0.78);
+      background: rgba(255, 255, 255, 0.82);
       backdrop-filter: blur(16px) saturate(160%);
       -webkit-backdrop-filter: blur(16px) saturate(160%);
       border-bottom: 1px solid var(--tx-line);
@@ -77,17 +77,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
       gap: 10px;
       font-size: 0.85rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
       color: var(--tx-text-2);
     }
-    .today__dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--tx-green);
-      box-shadow: 0 0 12px var(--tx-green);
-    }
+    .today__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--tx-green); }
     .quick { height: 40px; margin-right: 6px; }
     .user-btn {
       display: flex;
@@ -106,11 +98,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: var(--tx-yellow);
-      color: #0a0a0a;
-      font-family: var(--tx-display);
-      font-weight: 800;
-      font-size: 15px;
+      background: var(--tx-ink);
+      color: #fff;
+      font-weight: 600;
+      font-size: 13px;
     }
     .loading-bar { position: absolute; left: 0; right: 0; bottom: -4px; }
     @media (max-width: 600px) { .today, .quick { display: none; } }
@@ -124,7 +115,9 @@ export class TopbarComponent {
   menuToggle = output<void>();
 
   user = this.authStore.currentUser;
-  today = new Date().toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
+  today = ((d) => d.charAt(0).toUpperCase() + d.slice(1))(
+    new Date().toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' }),
+  );
 
   logout(): void { this.authSvc.logout(); }
 }

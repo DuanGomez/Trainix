@@ -28,27 +28,17 @@ import { MatIconModule } from '@angular/material/icon';
       display: flex; align-items: flex-end; justify-content: space-between;
       margin-bottom: 28px; gap: 16px; flex-wrap: wrap;
     }
-    .header-text { flex: 1; min-width: 0; }
+    .header-text { flex: 1; min-width: min(240px, 100%); }
     .page-title {
       margin: 0;
       font-family: var(--tx-display);
-      font-size: clamp(2.2rem, 4vw, 3rem);
-      font-weight: 900;
-      font-style: italic;
-      text-transform: uppercase;
-      line-height: 0.95;
+      font-size: clamp(1.7rem, 3vw, 2.1rem);
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
       color: var(--tx-text);
     }
-    .page-title::after {
-      content: "";
-      display: block;
-      width: 44px;
-      height: 4px;
-      margin-top: 12px;
-      border-radius: 4px;
-      background: var(--tx-yellow);
-    }
-    .page-subtitle { margin: 12px 0 0; color: var(--tx-text-2); font-size: 0.95rem; }
+    .page-subtitle { margin: 6px 0 0; color: var(--tx-text-3); font-size: 0.95rem; }
   `],
 })
 export class PageHeaderComponent {

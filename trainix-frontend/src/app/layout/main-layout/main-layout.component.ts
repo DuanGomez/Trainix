@@ -31,15 +31,13 @@ import { TopbarComponent } from '../topbar/topbar.component';
   `,
   styles: [`
     .layout-container { height: 100vh; }
-    .sidenav { width: 264px; border-right: none; background: #000; }
+    .sidenav { width: 260px; border-right: none; background: var(--tx-ink); }
     .main-content { display: flex; flex-direction: column; height: 100%; }
     .page-wrapper {
       flex: 1;
       overflow-y: auto;
       padding: 32px clamp(16px, 3vw, 40px) 48px;
-      background:
-        radial-gradient(50% 40% at 100% 0%, rgba(255, 200, 0, 0.06), transparent 70%),
-        var(--tx-bg);
+      background: var(--tx-bg);
     }
     @media (max-width: 600px) { .page-wrapper { padding: 20px 16px 40px; } }
   `],

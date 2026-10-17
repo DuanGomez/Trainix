@@ -23,8 +23,8 @@ import { MatButtonModule } from '@angular/material/button';
       display: flex; flex-direction: column; align-items: center;
       justify-content: center; padding: 48px 24px; text-align: center; color: var(--tx-text-3);
     }
-    .empty-icon { font-size: 64px; width: 64px; height: 64px; margin-bottom: 16px; color: var(--tx-yellow); opacity: .5; }
-    h3 { margin: 0 0 8px; font-family: var(--tx-display); font-size: 1.6rem; font-weight: 800; text-transform: uppercase; color: var(--tx-text-2); }
+    .empty-icon { font-size: 64px; width: 64px; height: 64px; margin-bottom: 16px; color: var(--tx-text-3); opacity: .6; }
+    h3 { margin: 0 0 8px; font-family: var(--tx-display); font-size: 1.15rem; font-weight: 700; color: var(--tx-text); }
     p { margin: 0 0 24px; font-size: 0.9rem; }
   `],
 })

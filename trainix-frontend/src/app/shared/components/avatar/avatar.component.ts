@@ -18,7 +18,7 @@ import { Component, input } from '@angular/core';
   styles: [`
     .avatar { border-radius: 50%; object-fit: cover; }
     .avatar-placeholder {
-      border-radius: 30%; background: var(--tx-yellow); color: #0a0a0a; font-family: var(--tx-display);
+      border-radius: 50%; background: var(--tx-surface-2); color: var(--tx-text); border: 1px solid var(--tx-line);
       display: flex; align-items: center; justify-content: center;
       font-weight: 600; flex-shrink: 0;
     }

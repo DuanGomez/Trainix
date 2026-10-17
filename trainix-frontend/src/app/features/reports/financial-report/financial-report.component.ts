@@ -8,7 +8,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
 import { PageHeaderComponent } from '../../../shared/components/page-header/page-header.component';
 import { PAYMENT_CONCEPT_LABELS, PAYMENT_METHOD_LABELS, label, toDateOnly } from '../../../shared/labels';
 import { MetricCardComponent } from '../../../shared/components/metric-card/metric-card.component';
@@ -29,7 +28,7 @@ interface FinancialReport {
     CurrencyPipe, ReactiveFormsModule,
     MatCardModule, MatButtonModule, MatIconModule,
     MatFormFieldModule, MatInputModule, MatTableModule,
-    MatDatepickerModule, MatNativeDateModule,
+    MatDatepickerModule,
     PageHeaderComponent, MetricCardComponent,
   ],
   template: `

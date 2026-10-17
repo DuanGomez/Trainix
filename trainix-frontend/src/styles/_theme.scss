@@ -1,22 +1,33 @@
 @use '@angular/material' as mat;
 
-// Marca Trainix: amarillo eléctrico sobre negro (tema oscuro).
+// Botones y controles principales en tinta (negro cálido); el amarillo de Trainix es el acento.
+$trainix-ink: (
+  50: #f4f4f5, 100: #e4e4e7, 200: #c8c8cd, 300: #a1a1a8, 400: #6f6f76,
+  500: #131316, 600: #111114, 700: #0e0e10, 800: #0b0b0d, 900: #060607,
+  A100: #e4e4e7, A200: #a1a1a8, A400: #3a3a3f, A700: #131316,
+  contrast: (
+    50: #131316, 100: #131316, 200: #131316, 300: #131316, 400: #ffffff,
+    500: #ffffff, 600: #ffffff, 700: #ffffff, 800: #ffffff, 900: #ffffff,
+    A100: #131316, A200: #131316, A400: #ffffff, A700: #ffffff,
+  ),
+);
+
 $trainix-yellow: (
   50: #fff9e0, 100: #fff0b3, 200: #ffe680, 300: #ffdb4d, 400: #ffd326,
   500: #ffc800, 600: #f5b800, 700: #e6a400, 800: #d69200, 900: #b87100,
   A100: #fff4c4, A200: #ffe45c, A400: #ffd400, A700: #ffc400,
   contrast: (
-    50: #0a0a0a, 100: #0a0a0a, 200: #0a0a0a, 300: #0a0a0a, 400: #0a0a0a,
-    500: #0a0a0a, 600: #0a0a0a, 700: #0a0a0a, 800: #0a0a0a, 900: #0a0a0a,
-    A100: #0a0a0a, A200: #0a0a0a, A400: #0a0a0a, A700: #0a0a0a,
+    50: #131316, 100: #131316, 200: #131316, 300: #131316, 400: #131316,
+    500: #131316, 600: #131316, 700: #131316, 800: #131316, 900: #131316,
+    A100: #131316, A200: #131316, A400: #131316, A700: #131316,
   ),
 );
 
-$trainix-primary: mat.m2-define-palette($trainix-yellow, 500, 300, 700);
-$trainix-accent:  mat.m2-define-palette($trainix-yellow, A400);
-$trainix-warn:    mat.m2-define-palette(mat.$m2-red-palette, 400);
+$trainix-primary: mat.m2-define-palette($trainix-ink, 500, 300, 700);
+$trainix-accent:  mat.m2-define-palette($trainix-yellow, 500);
+$trainix-warn:    mat.m2-define-palette(mat.$m2-red-palette, 600);
 
-$trainix-theme: mat.m2-define-dark-theme((
+$trainix-theme: mat.m2-define-light-theme((
   color: (
     primary: $trainix-primary,
     accent:  $trainix-accent,

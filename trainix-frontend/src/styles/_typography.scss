@@ -1,27 +1,16 @@
-h1, h2, h3, h4, h5, h6 { font-weight: 700; color: var(--tx-text); letter-spacing: -0.02em; }
-
-// Títulos deportivos: condensados, gruesos y en mayúsculas.
-.tx-display {
-  font-family: var(--tx-display);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 0.95;
-}
+h1, h2, h3, h4, h5, h6 { font-family: var(--tx-display); font-weight: 700; color: var(--tx-text); letter-spacing: -0.02em; }
 
 .page-title {
   font-family: var(--tx-display);
-  font-size: 2.6rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1;
+  font-size: 1.9rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   color: var(--tx-text);
   margin: 0;
 }
 
 .section-title {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--tx-text-2);
   margin-bottom: 16px;

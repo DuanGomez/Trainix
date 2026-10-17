@@ -56,12 +56,12 @@ export interface TableColumn {
   styles: [`
     .table-wrapper { position: relative; border-radius: 20px; overflow-x: auto; background: var(--tx-surface); border: 1px solid var(--tx-line); }
     .loading-overlay {
-      position: absolute; inset: 0; background: rgba(10,10,10,0.6);
+      position: absolute; inset: 0; background: rgba(255,255,255,0.7);
       display: flex; align-items: center; justify-content: center; z-index: 5;
     }
     .full-width { width: 100%; }
     .clickable { cursor: pointer; }
-    .clickable:hover { background: rgba(255, 200, 0, 0.04); }
+    .clickable:hover { background: var(--tx-bg); }
     .empty-cell { padding: 0; }
   `],
 })
